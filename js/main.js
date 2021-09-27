@@ -26,7 +26,7 @@ function getRandomFloat(min, max, fraction) {
   } else if (max < 0 || min < 0) {
     return null;
   }
-  let randomNumber = (Math.random() * (max - min)) + min;
+  const randomNumber = (Math.random() * (max - min)) + min;
   return +randomNumber.toFixed(fraction);
 }
 getRandomFloat(51.99998, 53, 5);
