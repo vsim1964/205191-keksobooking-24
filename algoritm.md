@@ -1,3 +1,38 @@
+
+// {
+//   "author": {
+//     "avatar": ,
+//   },
+//   "offer": {
+//     "title": ,
+//     "address": ,
+//     "price": getRandomInteger(500000, 1000000),
+//     "type": ,
+//     "rooms": ,
+//     "guests": ,
+//     "checkin": ,
+//     "checkout": ,
+//     "features": [
+//       "wifi",
+//       "washer",
+//       "elevator",
+//       "parking",
+//       "dishwasher",
+//       "conditioner"
+//     ],
+//     "description":
+
+//       "photos": [
+
+//       ]
+//   },
+//   "location": {
+
+//   }
+// }
+
+
+
 ### ИНИЦИАЛИЗАЦИЯ
 
 - Загрузка и успешная инициализация карты (карта реализуется сторонней библиотекой Leaflet) переводит страницу в активное состояние.
