@@ -74,6 +74,8 @@ function createFlat() {
   const quantityRandomInteger = getRandomInteger(1, 10);
   const checkinsRandomIndex = getRandomInteger(0, 2);
   const checkoutsRandomIndex = getRandomInteger(0, 2);
+  const propertiesStart = getRandomInteger(0, 5);
+  const propertiesEnd = getRandomInteger(propertiesStart + 1, 7);
   const descriptionsRandomIndex = getRandomInteger(0, 9);
   const picturesRandomIndex = getRandomInteger(0, 2);
   const latsRandomInteger = getRandomFloat(35.65000, 35.70000, 5);
@@ -94,7 +96,7 @@ function createFlat() {
       guests: quantityRandomInteger,
       checkin: checkins[checkinsRandomIndex],
       checkout: checkouts[checkoutsRandomIndex],
-      features: properties.splice(0, getRandomInteger(0, 6)),
+      features: properties.slice(propertiesStart, propertiesEnd),
       description: descriptions[descriptionsRandomIndex],
       pictures: pictures[picturesRandomIndex],
     },
