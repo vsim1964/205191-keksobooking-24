@@ -15,11 +15,11 @@ function getRandomFloat(min, max, fraction) {
   } else if (max < 0 || min < 0) {
     return null;
   }
-  const randomNumber = (Math.random() * (max - min)) + min;
-  return +randomNumber.toFixed(fraction);
+  const RANDOM_NUMBER = (Math.random() * (max - min)) + min;
+  return +RANDOM_NUMBER.toFixed(fraction);
 }
 
-const avatars = [
+const AVATARS = [
   'img/avatars/user01.png',
   'img/avatars/user02.png',
   'img/avatars/user03.png',
@@ -31,7 +31,7 @@ const avatars = [
   'img/avatars/user09.png',
   'img/avatars/user10.png',
 ];
-const titles = [
+const TITLES = [
   'Хорошее жилье',
   'Отличный вид',
   'Метро рядом',
@@ -43,11 +43,11 @@ const titles = [
   'Просторная кухня',
   'Вежливые соседи',
 ];
-const types = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
-const checkins = ['12:00', '13:00', '14:00'];
-const checkouts = ['12:00', '13:00', '14:00'];
-const properties = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-const descriptions = [
+const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const CHECKINS = ['12:00', '13:00', '14:00'];
+const CHECKOUTS = ['12:00', '13:00', '14:00'];
+const PROPERTIES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const DESCRIPTIONS = [
   'Кухня полностью экипирована бытовой техникой: холодильник, посудомоечная машина, варочная панель.',
   'Квартира оснащена всем необходимым для жизни, заходи и живи.',
   'Квартира уютная и просторная, тихая, заезжай и живи, все в состоянии нового. Подъезд чистый и без запаха.',
@@ -59,56 +59,57 @@ const descriptions = [
   'Беспроблемная парковка,автомойка -приятный бонус для автовладельцев.',
   'Огороженная территория,высокопрофессиональная охрана,система видео наблюдения,консьерж.',
 ];
-const pictures = [
+const PICTURES = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
+const FROM_LATITUDE = 35.65000;
+const TO_LATITUDE = 35.70000;
+const FROM_LONGITUDE = 139.70000;
+const TO_LONGITUDE = 139.80000;
 
 function createFlat() {
-  const avatarsRandomIndex = getRandomInteger(0, 9);
-  const titlesRandomIndex = getRandomInteger(0, 9);
-  const pricesRandomInteger = getRandomInteger(500000, 1000000);
-  const typesRandomIndex = getRandomInteger(0, 4);
-  const roomsRandomInteger = getRandomInteger(1, 10);
-  const quantityRandomInteger = getRandomInteger(1, 10);
-  const checkinsRandomIndex = getRandomInteger(0, 2);
-  const checkoutsRandomIndex = getRandomInteger(0, 2);
-  const propertiesStart = getRandomInteger(0, 5);
-  const propertiesEnd = getRandomInteger(propertiesStart + 1, 7);
-  const descriptionsRandomIndex = getRandomInteger(0, 9);
-  const picturesRandomIndex = getRandomInteger(0, 2);
-  const latsRandomInteger = getRandomFloat(35.65000, 35.70000, 5);
-  const lngsRandomInteger = getRandomFloat(139.70000, 139.80000, 5);
+  const TITLES_RANDOM_INDEX = getRandomInteger(0, 9);
+  const PRICES_RANDOM_INTEGER = getRandomInteger(500000, 1000000);
+  const TYPES_RANDOM_INDEX = getRandomInteger(0, 4);
+  const ROOMS_RANDOM_INTEGER = getRandomInteger(1, 10);
+  const QUANTITY_RANDOM_INTEGER = getRandomInteger(1, 10);
+  const CHECKINS_RANDOM_INDEX = getRandomInteger(0, 2);
+  const CHECKOUTS_RANDOM_INDEX = getRandomInteger(0, 2);
+  const PROPERTIES_START = getRandomInteger(0, 5);
+  const PROPERTIES_END = getRandomInteger(PROPERTIES_START + 1, 7);
+  const DESCRIPTIONS_RANDOM_INDEX = getRandomInteger(0, 9);
+  const PICTURES_RANDOM_INDEX = getRandomInteger(0, 2);
+  const LATS_RANDOM_INTEGER = getRandomFloat(FROM_LATITUDE, TO_LATITUDE, 5);
+  const LNGS_RANDOM_INTEGER = getRandomFloat(FROM_LONGITUDE, TO_LONGITUDE, 5);
   return {
     author: {
-      avatar: avatars[avatarsRandomIndex],
+      avatar: AVATARS[i],
     },
     offer: {
-      title: titles[titlesRandomIndex],
-      address: {
-        latsRandomInteger,
-        lngsRandomInteger,
-      },
-      price: pricesRandomInteger,
-      type: types[typesRandomIndex],
-      room: roomsRandomInteger,
-      guests: quantityRandomInteger,
-      checkin: checkins[checkinsRandomIndex],
-      checkout: checkouts[checkoutsRandomIndex],
-      features: properties.slice(propertiesStart, propertiesEnd),
-      description: descriptions[descriptionsRandomIndex],
-      pictures: pictures[picturesRandomIndex],
+      title: TITLES[TITLES_RANDOM_INDEX],
+      address: `${LATS_RANDOM_INTEGER}, ${LNGS_RANDOM_INTEGER}`,
+      price: PRICES_RANDOM_INTEGER,
+      type: TYPES[TYPES_RANDOM_INDEX],
+      room: ROOMS_RANDOM_INTEGER,
+      guests: QUANTITY_RANDOM_INTEGER,
+      checkin: CHECKINS[CHECKINS_RANDOM_INDEX],
+      checkout: CHECKOUTS[CHECKOUTS_RANDOM_INDEX],
+      features: PROPERTIES.slice(PROPERTIES_START, PROPERTIES_END),
+      description: DESCRIPTIONS[DESCRIPTIONS_RANDOM_INDEX],
+      pictures: PICTURES[PICTURES_RANDOM_INDEX],
     },
     location: {
-      lat: latsRandomInteger,
-      lng: lngsRandomInteger,
+      lat: LNGS_RANDOM_INTEGER,
+      lng: LNGS_RANDOM_INTEGER,
     },
   };
 }
-const advertsCount = 10;
-const adverts = [];
-for (let i = 0; i < advertsCount; i++) {
-  adverts[i] = createFlat();
+const ADVERTS_COUNT = 10;
+const ADVERTS = [];
+for (var i = 0; i < ADVERTS_COUNT; i++) {
+  ADVERTS[i] = createFlat();
 }
-console.log(adverts);
+console.log(ADVERTS);
+git ad
