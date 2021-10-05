@@ -68,6 +68,12 @@ const FROM_LATITUDE = 35.65000;
 const TO_LATITUDE = 35.70000;
 const FROM_LONGITUDE = 139.70000;
 const TO_LONGITUDE = 139.80000;
+const ADVERTS_COUNT = 10;
+const ADVERTS = [];
+let i;
+for (i = 0; i < ADVERTS_COUNT; i++) {
+  ADVERTS[i] = createFlat();
+}
 
 function createFlat() {
   const TITLES_RANDOM_INDEX = getRandomInteger(0, 9);
@@ -83,6 +89,7 @@ function createFlat() {
   const PICTURES_RANDOM_INDEX = getRandomInteger(0, 2);
   const LATS_RANDOM_INTEGER = getRandomFloat(FROM_LATITUDE, TO_LATITUDE, 5);
   const LNGS_RANDOM_INTEGER = getRandomFloat(FROM_LONGITUDE, TO_LONGITUDE, 5);
+
   return {
     author: {
       avatar: AVATARS[i],
@@ -106,10 +113,5 @@ function createFlat() {
     },
   };
 }
-const ADVERTS_COUNT = 10;
-const ADVERTS = [];
-for (var i = 0; i < ADVERTS_COUNT; i++) {
-  ADVERTS[i] = createFlat();
-}
+
 console.log(ADVERTS);
-git ad
