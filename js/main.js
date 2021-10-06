@@ -43,7 +43,13 @@ const TITLES = [
   'Просторная кухня',
   'Вежливые соседи',
 ];
+const MIN_PRICE = 500000;
+const MAX_PRICE = 1000000;
 const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const MIN_ROOMS = 1;
+const MAX_ROOMS = 10;
+const MIN_GUESTS = 1;
+const MAX_GUESTS = 10;
 const CHECKINS = ['12:00', '13:00', '14:00'];
 const CHECKOUTS = ['12:00', '13:00', '14:00'];
 const PROPERTIES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
@@ -77,17 +83,17 @@ for (i = 0; i < advertsCount; i++) {
 }
 
 function createFlat() {
-  const titlesRandomIndex = getRandomInteger(0, 9);
-  const pricesRandomInteger = getRandomInteger(500000, 1000000);
-  const typesRandomIndex = getRandomInteger(0, 4);
-  const roomsRandomInteger = getRandomInteger(1, 10);
-  const quantityRandomInteger = getRandomInteger(1, 10);
-  const checkinsRandomIndex = getRandomInteger(0, 2);
-  const checkoutsRandomIndex = getRandomInteger(0, 2);
-  const propertiesStart = getRandomInteger(0, 5);
-  const propertiesEnd = getRandomInteger(propertiesStart + 1, 7);
-  const descriptionsRandomIndex = getRandomInteger(0, 9);
-  const picturesRandomIndex = getRandomInteger(0, 2);
+  const titlesRandomIndex = getRandomInteger(0, TITLES.length - 1);
+  const pricesRandomInteger = getRandomInteger(MIN_PRICE, MAX_PRICE);
+  const typesRandomIndex = getRandomInteger(0, TYPES.length - 1);
+  const roomsRandomInteger = getRandomInteger(MIN_ROOMS, MAX_ROOMS);
+  const quantityRandomInteger = getRandomInteger(MIN_GUESTS, MAX_GUESTS);
+  const checkinsRandomIndex = getRandomInteger(0, CHECKINS.length - 1);
+  const checkoutsRandomIndex = getRandomInteger(0, CHECKOUTS.length - 1);
+  const propertiesStart = getRandomInteger(0, PROPERTIES.length - 1);
+  const propertiesEnd = getRandomInteger(propertiesStart + 1, PROPERTIES.length + 1);
+  const descriptionsRandomIndex = getRandomInteger(0, DESCRIPTIONS.length - 1);
+  const picturesRandomIndex = getRandomInteger(0, PICTURES.length - 1);
   const latsRandomInteger = getRandomFloat(FROM_LATITUDE, TO_LATITUDE, 5);
   const lngsRandomInteger = getRandomFloat(FROM_LONGITUDE, TO_LONGITUDE, 5);
 
@@ -114,5 +120,3 @@ function createFlat() {
     },
   };
 }
-
-console.log(adverts);
