@@ -77,12 +77,12 @@ const TO_LONGITUDE = 139.80000;
 
 const advertsCount = 10;
 const adverts = [];
-let i;
-for (i = 0; i < advertsCount; i++) {
-  adverts[i] = createFlat();
+
+for (let i = 0; i < advertsCount; i++) {
+  adverts[i] = createFlat(i);
 }
 
-function createFlat() {
+function createFlat(index) {
   const titlesRandomIndex = getRandomInteger(0, TITLES.length - 1);
   const pricesRandomInteger = getRandomInteger(MIN_PRICE, MAX_PRICE);
   const typesRandomIndex = getRandomInteger(0, TYPES.length - 1);
@@ -99,7 +99,7 @@ function createFlat() {
 
   return {
     author: {
-      avatar: AVATARS[i],
+      avatar: AVATARS[index],
     },
     offer: {
       title: TITLES[titlesRandomIndex],
@@ -112,7 +112,7 @@ function createFlat() {
       checkout: CHECKOUTS[checkoutsRandomIndex],
       features: PROPERTIES.slice(propertiesStart, propertiesEnd),
       description: DESCRIPTIONS[descriptionsRandomIndex],
-      pictures: PICTURES[picturesRandomIndex],
+      photos: PICTURES[picturesRandomIndex],
     },
     location: {
       lat: latsRandomInteger,
