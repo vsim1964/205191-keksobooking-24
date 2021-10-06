@@ -93,7 +93,10 @@ function createFlat(index) {
   const propertiesStart = getRandomInteger(0, PROPERTIES.length - 1);
   const propertiesEnd = getRandomInteger(propertiesStart + 1, PROPERTIES.length + 1);
   const descriptionsRandomIndex = getRandomInteger(0, DESCRIPTIONS.length - 1);
-  const picturesRandomIndex = getRandomInteger(0, PICTURES.length - 1);
+  const picturesStart = getRandomInteger(0, PICTURES.length - 1);
+  const picturesEnd = getRandomInteger(picturesStart + 1, PICTURES.length + 1);
+
+
   const latsRandomInteger = getRandomFloat(FROM_LATITUDE, TO_LATITUDE, 5);
   const lngsRandomInteger = getRandomFloat(FROM_LONGITUDE, TO_LONGITUDE, 5);
 
@@ -112,7 +115,7 @@ function createFlat(index) {
       checkout: CHECKOUTS[checkoutsRandomIndex],
       features: PROPERTIES.slice(propertiesStart, propertiesEnd),
       description: DESCRIPTIONS[descriptionsRandomIndex],
-      photos: PICTURES[picturesRandomIndex],
+      photos: PICTURES.slice(picturesStart, picturesEnd),
     },
     location: {
       lat: latsRandomInteger,
