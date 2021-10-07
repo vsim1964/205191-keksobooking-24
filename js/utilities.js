@@ -1,8 +1,3 @@
-export {
-  getRandomInteger,
-  getRandomFloat
-};
-
 function getRandomInteger(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -23,3 +18,8 @@ function getRandomFloat(min, max, fraction) {
   const randomNumber = (Math.random() * (max - min)) + min;
   return +randomNumber.toFixed(fraction);
 }
+
+export {
+  getRandomInteger,
+  getRandomFloat
+};

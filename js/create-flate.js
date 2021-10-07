@@ -70,5 +70,3 @@ function createFlat(index) {
     },
   };
 }
-
-console.log(adverts);
