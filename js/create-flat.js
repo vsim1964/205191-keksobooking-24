@@ -24,13 +24,6 @@ import {
   TO_LONGITUDE
 } from './data.js';
 
-const advertsCount = 10;
-const adverts = [];
-
-for (let i = 0; i < advertsCount; i++) {
-  adverts[i] = createFlat(i);
-}
-
 function createFlat(index) {
   const titlesRandomIndex = getRandomInteger(0, TITLES.length - 1);
   const pricesRandomInteger = getRandomInteger(MIN_PRICE, MAX_PRICE);
@@ -70,3 +63,7 @@ function createFlat(index) {
     },
   };
 }
+
+export {
+  createFlat
+};
