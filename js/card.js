@@ -8,7 +8,7 @@ const adverts = [];
 for (let i = 0; i < advertsCount; i++) {
   adverts[i] = createFlat(i);
 }
-
+console.log(adverts);
 // ! Получение массива шаблонов объвлений
 const cardTemplate = document.querySelector('#card').content;
 const popup = cardTemplate.querySelector('.popup');
