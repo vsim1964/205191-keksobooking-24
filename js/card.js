@@ -124,7 +124,6 @@ function addAdvertsCards(arr) {
   cardCreate(arr);
   const cardPrint = document.querySelector('#map-canvas');
   cardPrint.appendChild(cards[0]);
-  cardPrint.appendChild(cards[9]);
 }
 
 export {
