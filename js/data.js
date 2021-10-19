@@ -31,7 +31,14 @@ const MIN_GUESTS = 1;
 const MAX_GUESTS = 10;
 const CHECKINS = ['12:00', '13:00', '14:00'];
 const CHECKOUTS = ['12:00', '13:00', '14:00'];
-const PROPERTIES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+const PROPERTIES = [
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner',
+];
 const DESCRIPTIONS = [
   'Кухня полностью экипирована бытовой техникой: холодильник, посудомоечная машина, варочная панель.',
   'Квартира оснащена всем необходимым для жизни, заходи и живи.',

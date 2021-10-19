@@ -25,7 +25,7 @@ import {
 } from './data.js';
 
 
-function createFlat(index) {
+function flatCreate(index) {
   const titlesRandomIndex = getRandomInteger(0, TITLES.length - 1);
   const pricesRandomInteger = getRandomInteger(MIN_PRICE, MAX_PRICE);
   const typesRandomIndex = getRandomInteger(0, TYPES.length - 1);
@@ -37,7 +37,7 @@ function createFlat(index) {
   const propertiesEnd = getRandomInteger(propertiesStart + 1, PROPERTIES.length + 1);
   const descriptionsRandomIndex = getRandomInteger(0, DESCRIPTIONS.length - 1);
   const picturesStart = getRandomInteger(0, PICTURES.length - 1);
-  const picturesEnd = getRandomInteger(picturesStart + 1, PICTURES.length + 2);
+  const picturesEnd = getRandomInteger(picturesStart + 1, PICTURES.length + 1);
   const latsRandomInteger = getRandomFloat(FROM_LATITUDE, TO_LATITUDE, 5);
   const lngsRandomInteger = getRandomFloat(FROM_LONGITUDE, TO_LONGITUDE, 5);
 
@@ -66,5 +66,5 @@ function createFlat(index) {
 }
 
 export {
-  createFlat
+  flatCreate
 };
