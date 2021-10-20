@@ -25,7 +25,7 @@ import {
 } from './data.js';
 
 
-function flatCreate(index) {
+function сreateFlat(index) {
   const titlesRandomIndex = getRandomInteger(0, TITLES.length - 1);
   const pricesRandomInteger = getRandomInteger(MIN_PRICE, MAX_PRICE);
   const typesRandomIndex = getRandomInteger(0, TYPES.length - 1);
@@ -66,5 +66,5 @@ function flatCreate(index) {
 }
 
 export {
-  flatCreate
+  сreateFlat
 };
