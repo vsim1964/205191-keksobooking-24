@@ -1,6 +1,5 @@
 import {
   PROPERTIES,
-  PICTURES
 } from './data.js';
 
 // ! Получение массива шаблонов объвлений
@@ -9,10 +8,10 @@ const popup = cardTemplate.querySelector('.popup');
 const cards = [];
 
 // ! Обработка аватаров
-function createAvatars(array) {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].author.avatar !== undefined) {
-      cards[i].querySelector('.popup__avatar').src = array[i].author.avatar;
+function createAvatars(advertsArray) {
+  for (let i = 0; i < advertsArray.length; i++) {
+    if (advertsArray[i].author.avatar) {
+      cards[i].querySelector('.popup__avatar').src = advertsArray[i].author.avatar;
     } else {
       cards[i].querySelector('.popup__avatar').remove();
     }
@@ -20,14 +19,14 @@ function createAvatars(array) {
 }
 
 // ! Обработка фотографий недвижимости
-function createImages(array) {
-  for (let i = 0; i < array.length; i++) {
+function createImages(advertsArray) {
+  for (let i = 0; i < advertsArray.length; i++) {
     const photos = cards[i].querySelector('.popup__photos');
     const photo = photos.querySelector('.popup__photo');
-    for (let k = 0; k < array[i].offer.photos.length; k++) {
-      if (PICTURES.length !== 0) {
+    for (let k = 0; k < advertsArray[i].offer.photos.length; k++) {
+      if (advertsArray[i].offer.photos.length !== 0) {
         const clonedPhoto = photo.cloneNode();
-        clonedPhoto.src = array[i].offer.photos[k];
+        clonedPhoto.src = advertsArray[i].offer.photos[k];
         photos.appendChild(clonedPhoto);
       }
     }
@@ -51,14 +50,14 @@ function getFlatType(flatType) {
 }
 
 // ! Features
-function createFeatures(array) {
-  for (let i = 0; i < array.length; i++) {
+function createFeatures(advertsArray) {
+  for (let i = 0; i < advertsArray.length; i++) {
     const features = cards[i].querySelector('.popup__features');
-    if (PROPERTIES.length === 0) {
+    if (advertsArray[i].offer.features.length === 0) {
       features.remove();
     }
     for (let k = 0; k < PROPERTIES.length; k++) {
-      if (array[i].offer.features.includes(PROPERTIES[k])) {
+      if (advertsArray[i].offer.features.includes(PROPERTIES[k])) {
         const featureClass = `.popup__feature--${PROPERTIES[k]}`;
         const feature = features.querySelector(featureClass);
         feature.textContent = PROPERTIES[k];
@@ -72,44 +71,44 @@ function createFeatures(array) {
 }
 
 // ! Заполнение карточки
-function createCards(array) {
-  createAvatars(array);
-  createImages(array);
-  createFeatures(array);
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].offer.title) {
-      cards[i].querySelector('.popup__title').textContent = array[i].offer.title;
+function createCards(advertsArray) {
+  createAvatars(advertsArray);
+  createImages(advertsArray);
+  createFeatures(advertsArray);
+  for (let i = 0; i < advertsArray.length; i++) {
+    if (advertsArray[i].offer.title) {
+      cards[i].querySelector('.popup__title').textContent = advertsArray[i].offer.title;
     } else {
       cards[i].querySelector('.popup__title').remove();
     }
-    if (array[i].offer.address) {
-      cards[i].querySelector('.popup__text--address').textContent = array[i].offer.address;
+    if (advertsArray[i].offer.address) {
+      cards[i].querySelector('.popup__text--address').textContent = advertsArray[i].offer.address;
     } else {
       cards[i].querySelector('.popup__text--address').remove();
     }
-    if (array[i].offer.price) {
-      cards[i].querySelector('.popup__text--price').textContent = `${array[i].offer.price} ₽/ночь`;
+    if (advertsArray[i].offer.price) {
+      cards[i].querySelector('.popup__text--price').textContent = `${advertsArray[i].offer.price} ₽/ночь`;
     } else {
       cards[i].querySelector('.popup__text--price').remove();
     }
-    if (array[i].offer.type) {
-      cards[i].querySelector('.popup__type').textContent = getFlatType(array[i].offer.type);
+    if (advertsArray[i].offer.type) {
+      cards[i].querySelector('.popup__type').textContent = getFlatType(advertsArray[i].offer.type);
     } else {
       cards[i].querySelector('.popup__type').remove();
     }
-    if (array[i].offer.rooms && array[i].offer.guests) {
-      cards[i].querySelector('.popup__text--capacity').textContent = `${array[i].offer.rooms} комнаты для
-    ${array[i].offer.guests} гостей`;
+    if (advertsArray[i].offer.rooms && advertsArray[i].offer.guests) {
+      cards[i].querySelector('.popup__text--capacity').textContent = `${advertsArray[i].offer.rooms} комнаты для
+    ${advertsArray[i].offer.guests} гостей`;
     } else {
       cards[i].querySelector('.popup__text--capacity').remove();
     }
-    if (array[i].offer.checkin && array[i].offer.checkout) {
-      cards[i].querySelector('.popup__text--time').textContent = `Заезд после ${array[i].offer.checkin}, выезд до ${array[i].offer.checkout}`;
+    if (advertsArray[i].offer.checkin && advertsArray[i].offer.checkout) {
+      cards[i].querySelector('.popup__text--time').textContent = `Заезд после ${advertsArray[i].offer.checkin}, выезд до ${advertsArray[i].offer.checkout}`;
     } else {
       cards[i].querySelector('.popup__text--time').remove();
     }
-    if (array[i].offer.description) {
-      cards[i].querySelector('.popup__description').textContent = array[i].offer.description;
+    if (advertsArray[i].offer.description) {
+      cards[i].querySelector('.popup__description').textContent = advertsArray[i].offer.description;
     } else {
       cards[i].querySelector('.popup__description').remove();
     }
@@ -117,11 +116,11 @@ function createCards(array) {
 }
 
 // ! Отрисовка первого объявления в месте, указанном заданием
-function addAdvertsCards(array) {
-  for (let i = 0; i < array.length; i++) {
+function addAdvertsCards(advertsArray) {
+  for (let i = 0; i < advertsArray.length; i++) {
     cards[i] = popup.cloneNode(true);
   }
-  createCards(array);
+  createCards(advertsArray);
   const cardPrint = document.querySelector('#map-canvas');
   cardPrint.appendChild(cards[0]);
 }
