@@ -1,5 +1,5 @@
 import {
-  PROPERTIES,
+  PROPERTIES
 } from './data.js';
 
 // ! Получение массива шаблонов объвлений
@@ -23,8 +23,8 @@ function createImages(advertsArray) {
   for (let i = 0; i < advertsArray.length; i++) {
     const photos = cards[i].querySelector('.popup__photos');
     const photo = photos.querySelector('.popup__photo');
-    for (let k = 0; k < advertsArray[i].offer.photos.length; k++) {
-      if (advertsArray[i].offer.photos.length !== 0) {
+    if (advertsArray[i].offer.photos.length !== 0 && advertsArray[i].offer.photos !== undefined) {
+      for (let k = 0; k < advertsArray[i].offer.photos.length; k++) {
         const clonedPhoto = photo.cloneNode();
         clonedPhoto.src = advertsArray[i].offer.photos[k];
         photos.appendChild(clonedPhoto);
@@ -53,7 +53,7 @@ function getFlatType(flatType) {
 function createFeatures(advertsArray) {
   for (let i = 0; i < advertsArray.length; i++) {
     const features = cards[i].querySelector('.popup__features');
-    if (advertsArray[i].offer.features.length === 0) {
+    if (advertsArray[i].offer.features.length === 0 && advertsArray[i].offer.features !== undefined) {
       features.remove();
     }
     for (let k = 0; k < PROPERTIES.length; k++) {
