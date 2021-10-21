@@ -23,16 +23,18 @@ function createImages(advertsArray) {
   for (let i = 0; i < advertsArray.length; i++) {
     const photos = cards[i].querySelector('.popup__photos');
     const photo = photos.querySelector('.popup__photo');
-    if (advertsArray[i].offer.photos.length !== 0 || advertsArray[i].offer.photos !== undefined) {
-      for (let k = 0; k < advertsArray[i].offer.photos.length; k++) {
-        const clonedPhoto = photo.cloneNode();
-        clonedPhoto.src = advertsArray[i].offer.photos[k];
-        photos.appendChild(clonedPhoto);
-      }
+    if (advertsArray[i].offer.photos === undefined || advertsArray[i].offer.photos.length === 0) {
+      photos.remove();
+    }
+    for (let k = 0; k < advertsArray[i].offer.photos.length; k++) {
+      const clonedPhoto = photo.cloneNode();
+      clonedPhoto.src = advertsArray[i].offer.photos[k];
+      photos.appendChild(clonedPhoto);
     }
     photo.remove();
   }
 }
+
 // ! Выбор типа недвижимости
 function getFlatType(flatType) {
   if (flatType === 'flat') {
@@ -52,7 +54,7 @@ function getFlatType(flatType) {
 function createFeatures(advertsArray) {
   for (let i = 0; i < advertsArray.length; i++) {
     const features = cards[i].querySelector('.popup__features');
-    if (advertsArray[i].offer.features.length === 0 || advertsArray[i].offer.features === undefined) {
+    if (advertsArray[i].offer.features === undefined || advertsArray[i].offer.features.length === 0) {
       features.remove();
     }
     for (let k = 0; k < PROPERTIES.length; k++) {
