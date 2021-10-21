@@ -42,4 +42,4 @@ function inactive() {
 export {
   active,
   inactive
-}
+};
