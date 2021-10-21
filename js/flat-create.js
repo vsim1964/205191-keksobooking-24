@@ -24,7 +24,8 @@ import {
   TO_LONGITUDE
 } from './data.js';
 
-function createFlat(index) {
+
+function сreateFlat(index) {
   const titlesRandomIndex = getRandomInteger(0, TITLES.length - 1);
   const pricesRandomInteger = getRandomInteger(MIN_PRICE, MAX_PRICE);
   const typesRandomIndex = getRandomInteger(0, TYPES.length - 1);
@@ -49,7 +50,7 @@ function createFlat(index) {
       address: `${latsRandomInteger}, ${lngsRandomInteger}`,
       price: pricesRandomInteger,
       type: TYPES[typesRandomIndex],
-      room: roomsRandomInteger,
+      rooms: roomsRandomInteger,
       guests: quantityRandomInteger,
       checkin: CHECKINS[checkinsRandomIndex],
       checkout: CHECKOUTS[checkoutsRandomIndex],
@@ -65,5 +66,5 @@ function createFlat(index) {
 }
 
 export {
-  createFlat
+  сreateFlat
 };
