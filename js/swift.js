@@ -1,40 +1,40 @@
-const mapFilters = document.querySelector('.map__filters');
-const mapFilter = document.querySelectorAll('.map__filter');
-const mapFeatures = document.querySelector('.map__features');
-const adForm = document.querySelector('.ad-form');
-const adFormHeader = document.querySelector('.ad-form-header');
-const adFormElement = document.querySelectorAll('.ad-form__element');
+const mapFiltersForm = document.querySelector('.map__filters');
+const mapFilters = document.querySelectorAll('.map__filter');
+const mapFeaturesFilter = document.querySelector('.map__features');
+const advertForm = document.querySelector('.ad-form');
+const advertFormHeader = document.querySelector('.ad-form-header');
+const advertFormSection = document.querySelectorAll('.ad-form__element');
 
 function active() {
-  mapFilters.classList.remove('map__filters--disabled');
-  mapFilter.forEach(() => {
-    for (let i = 0; i < mapFilter.length; i++) {
-      mapFilter[i].removeAttribute('disabled', 'disabled');
+  mapFiltersForm.classList.remove('map__filters--disabled');
+  mapFilters.forEach(() => {
+    for (let i = 0; i < mapFilters.length; i++) {
+      mapFilters[i].removeAttribute('disabled', 'disabled');
     }
   });
-  mapFeatures.removeAttribute('disabled', 'disabled');
-  adForm.classList.remove('ad-form--disabled');
-  adFormHeader.removeAttribute('disabled', 'disabled');
-  adFormElement.forEach(() => {
-    for (let i = 0; i < adFormElement.length; i++) {
-      adFormElement[i].removeAttribute('disabled', 'disabled');
+  mapFeaturesFilter.removeAttribute('disabled', 'disabled');
+  advertForm.classList.remove('ad-form--disabled');
+  advertFormHeader.removeAttribute('disabled', 'disabled');
+  advertFormSection.forEach(() => {
+    for (let i = 0; i < advertFormSection.length; i++) {
+      advertFormSection[i].removeAttribute('disabled', 'disabled');
     }
   });
 }
 
 function inactive() {
-  mapFilters.classList.add('map__filters--disabled');
-  mapFilter.forEach(() => {
-    for (let i = 0; i < mapFilter.length; i++) {
-      mapFilter[i].setAttribute('disabled', 'disabled');
+  mapFiltersForm.classList.add('map__filters--disabled');
+  mapFilters.forEach(() => {
+    for (let i = 0; i < mapFilters.length; i++) {
+      mapFilters[i].setAttribute('disabled', 'disabled');
     }
   });
-  mapFeatures.setAttribute('disabled', 'disabled');
-  adForm.classList.add('ad-form--disabled');
-  adFormHeader.setAttribute('disabled', 'disabled');
-  adFormElement.forEach(() => {
-    for (let i = 0; i < adFormElement.length; i++) {
-      adFormElement[i].setAttribute('disabled', 'disabled');
+  mapFeaturesFilter.setAttribute('disabled', 'disabled');
+  advertForm.classList.add('ad-form--disabled');
+  advertFormHeader.setAttribute('disabled', 'disabled');
+  advertFormSection.forEach(() => {
+    for (let i = 0; i < advertFormSection.length; i++) {
+      advertFormSection[i].setAttribute('disabled', 'disabled');
     }
   });
 }
