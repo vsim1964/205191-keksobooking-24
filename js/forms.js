@@ -1,6 +1,6 @@
 // ! Валидация формы Заголовок == пункт 3.1 техзадания
 const titleInput = document.querySelector('#title');
-titleInput.addEventListener('invalid', () => {
+titleInput.addEventListener('change', () => {
   if (titleInput.validity.valueMissing) {
     titleInput.setCustomValidity('Поле не должно быть пустым. Напишите заголовок: краткое название своего предложения');
   } else if (titleInput.validity.tooShort) {
@@ -69,6 +69,13 @@ timein.addEventListener('change', (evt) => {
 const roomNumber = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
 const options = capacity.querySelectorAll('option');
+
+if (roomNumber.value === '1') {
+  options[0].setAttribute('disabled', 'disabled');
+  options[1].setAttribute('disabled', 'disabled');
+  options[2].removeAttribute('disabled', 'disabled');
+  options[3].setAttribute('disabled', 'disabled');
+}
 
 roomNumber.addEventListener('change', (evt) => {
   if (evt.target.value === '1') {
