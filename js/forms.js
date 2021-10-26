@@ -13,89 +13,83 @@ titleInput.addEventListener('invalid', () => {
 });
 
 // ! Привязка placeholder price к type  ==   пункт 3.3 техзадания
-
 const selectType = document.querySelector('#type');
-const bungalow = selectType.querySelector('option[value="bungalow"]');
-const flat = selectType.querySelector('option[value="flat"]');
-const house = selectType.querySelector('option[value="house"]');
-const palace = selectType.querySelector('option[value="palace"]');
-const hotel = selectType.querySelector('option[value="hotel"]');
 const minPrice = document.querySelector('#price');
 
-selectType.addEventListener('change', () => {
-  if (flat.hasAttribute('selected')) {
+selectType.addEventListener('change', (evt) => {
+  if (evt.target.value === 'flat') {
     minPrice.setAttribute('placeholder', 1000);
     minPrice.setAttribute('min', 1000);
-  } else if (bungalow.hasAttribute('selected')) {
+  } else if (evt.target.value === 'bungalow') {
     minPrice.setAttribute('placeholder', 0);
     minPrice.setAttribute('min', 0);
-  } else if (house.hasAttribute('selected')) {
+  } else if (evt.target.value === 'house') {
     minPrice.setAttribute('placeholder', 5000);
     minPrice.setAttribute('min', 5000);
-  } else if (palace.hasAttribute('selected ')) {
+  } else if (evt.target.value === 'palace') {
     minPrice.setAttribute('placeholder', 10000);
     minPrice.setAttribute('min', 10000);
-  } else if (hotel.hasAttribute('selected')) {
+  } else if (evt.target.value === 'hotel') {
     minPrice.setAttribute('placeholder', 3000);
     minPrice.setAttribute('min', 3000);
   }
 });
 
 // ! Валидация формы Цена за ночь == пункт 3.2 техзадания
-const priceInput = document.querySelector('#price');
-const priceValue = priceInput.getAttribute('min');
-priceInput.addEventListener('invalid', () => {
-  if (titleInput.validity.valueMissing) {
-    titleInput.setCustomValidity('Поле не должно быть пустым. Напишите цену, не меньше минимальной');
-  } else if (titleInput.validity.rangeUnderflow) {
-    titleInput.setCustomValidity(`Порог минимальной цены - ${priceValue}`);
-  } else if (titleInput.validity.rangeOverflow) {
+minPrice.addEventListener('invalid', () => {
+  const priceValue = minPrice.getAttribute('min');
+  if (minPrice.validity.valueMissing) {
+    minPrice.setCustomValidity('Поле не должно быть пустым. Напишите цену, не меньше минимальной');
+  } else if (minPrice.validity.rangeUnderflow) {
+    minPrice.setCustomValidity(`Порог минимальной цены - ${priceValue}`);
+  } else if (minPrice.validity.rangeOverflow) {
     titleInput.setCustomValidity('Превышена максимальная цена - 1 000 000');
-  } else if (titleInput.validity.typeMismatch) {
-    titleInput.setCustomValidity('Запись цены - только цифрами');
+  } else if (minPrice.validity.typeMismatch) {
+    minPrice.setCustomValidity('Запись цены - только цифрами');
   } else {
-    titleInput.setCustomValidity('');
+    minPrice.setCustomValidity('');
   }
 });
 
 // ! Синхронизация времен заезда и выекзда  ==   пункт 3.5 техзадания
-
 const timein = document.querySelector('#timein');
-const timein12 = timein.getAttribute('value="12:00"');
-const timein13 = timein.getAttribute('value="13:00"');
-const timein14 = timein.getAttribute('value="14:00"');
 const timeout = document.querySelector('#timeout');
-const timeout12 = timeout.getAttribute('value="12:00"');
-const timeout13 = timeout.getAttribute('value="13:00"');
-const timeout14 = timeout.getAttribute('value="14:00"');
 
-
-timein.addEventListener('change', () => {
-  if (timein12.hasAttribute('selected')) {
-    timeout12.setAttribute('selected');
-  } else if (timein13.hasAttribute('selected')) {
-    timeout13.setAttribute('selected');
-  } else if (timein14.hasAttribute('selected')) {
-    timeout14.setAttribute('selected');
+timein.addEventListener('change', (evt) => {
+  if (evt.target.value === '12:00') {
+    timeout.value = '12:00';
+  } else if (evt.target.value === '13:00') {
+    timeout.value = '13:00';
+  } else if (evt.target.value === '14:00') {
+    timeout.value = '14:00';
   }
 });
 
 // ! Ограничение количества гостей  ==   пункт 3.6 техзадания
-
+const roomNumber = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
-const capacity1 = capacity.getAttribute('value="1"');
-const capacity2 = capacity.getAttribute('value="2"');
-const capacity3 = capacity.getAttribute('value="3"');
-const capacity100 = capacity.getAttribute('value="100"');
+const options = capacity.querySelectorAll('option');
 
-capacity.addEventListener('change', () => {
-  if (capacity1.hasAttribute('selected')) {
-    capacity1.setCustomValidity('Возможен выбор только одной комнаты');
-  } else if (capacity2.hasAttribute('selected')) {
-    capacity2.setCustomValidity('Возможен выбор только одной или двух комнат');
-  } else if (capacity3.hasAttribute('selected')) {
-    capacity3.setCustomValidity('Возможен выбор только одной или двух или трех комнат');
-  } else if (capacity100.hasAttribute('selected')) {
-    capacity100.setCustomValidity('Это вариант не для гостей');
+roomNumber.addEventListener('change', (evt) => {
+  if (evt.target.value === '1') {
+    options[0].setAttribute('disabled', 'disabled');
+    options[1].setAttribute('disabled', 'disabled');
+    options[2].removeAttribute('disabled', 'disabled');
+    options[3].setAttribute('disabled', 'disabled');
+  } else if (evt.target.value === '2') {
+    options[1].removeAttribute('disabled', 'disabled');
+    options[2].removeAttribute('disabled', 'disabled');
+    options[0].setAttribute('disabled', 'disabled');
+    options[3].setAttribute('disabled', 'disabled');
+  } else if (evt.target.value === '3') {
+    options[0].removeAttribute('disabled', 'disabled');
+    options[1].removeAttribute('disabled', 'disabled');
+    options[2].removeAttribute('disabled', 'disabled');
+    options[3].setAttribute('disabled', 'disabled');
+  } else if (evt.target.value === '100') {
+    options[0].setAttribute('disabled', 'disabled');
+    options[1].setAttribute('disabled', 'disabled');
+    options[2].setAttribute('disabled', 'disabled');
+    options[3].removeAttribute('disabled', 'disabled');
   }
 });
