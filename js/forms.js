@@ -48,8 +48,6 @@ priceInputElement.addEventListener('input', () => {
     priceInputElement.setCustomValidity(`Порог минимальной цены - ${priceValue}`);
   } else if (priceInputElement.validity.rangeOverflow) {
     priceInputElement.setCustomValidity('Превышена максимальная цена - 1 000 000');
-  } else if (priceInputElement.validity.typeMismatch) {
-    priceInputElement.setCustomValidity('Запись цены - только цифрами');
   } else {
     priceInputElement.setCustomValidity('');
   }
