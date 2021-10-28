@@ -21,5 +21,5 @@ for (let i = 0; i < advertsCount; i++) {
 
 addAdvertsCards(adverts);
 
-active();
 inactive();
+active();
