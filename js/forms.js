@@ -1,12 +1,14 @@
 // ! Валидация формы Заголовок == пункт 3.1 техзадания
+const MIN_NAME_LENGTH = 30;
+const MAX_NAME_LENGTH = 100;
 const titleInputElement = document.querySelector('#title');
+
 titleInputElement.addEventListener('input', () => {
-  if (titleInputElement.validity.valueMissing) {
-    titleInputElement.setCustomValidity('Поле не должно быть пустым. Напишите заголовок: краткое название своего предложения');
-  } else if (titleInputElement.validity.tooShort) {
-    titleInputElement.setCustomValidity('Заголовок должен состоять минимум из 30 символов');
-  } else if (titleInputElement.validity.tooLong) {
-    titleInputElement.setCustomValidity('Заголовок не должен превышать 100 символов');
+  const valueLength = titleInputElement.value.length;
+  if (valueLength < MIN_NAME_LENGTH) {
+    titleInputElement.setCustomValidity(`Добавьте ${  MIN_NAME_LENGTH - valueLength } симв.`);
+  } else if (valueLength > MAX_NAME_LENGTH) {
+    titleInputElement.setCustomValidity(`Удалите лишние ${  valueLength - MAX_NAME_LENGTH } симв.`);
   } else {
     titleInputElement.setCustomValidity('');
   }
@@ -37,8 +39,9 @@ typeSelectElement.addEventListener('change', (evt) => {
 });
 
 // ! Валидация формы Цена за ночь == пункт 3.2 техзадания
-priceInputElement.addEventListener('invalid', () => {
+priceInputElement.addEventListener('input', () => {
   const priceValue = priceInputElement.getAttribute('min');
+
   if (priceInputElement.validity.valueMissing) {
     priceInputElement.setCustomValidity('Поле не должно быть пустым. Напишите цену, не меньше минимальной');
   } else if (priceInputElement.validity.rangeUnderflow) {
@@ -50,6 +53,7 @@ priceInputElement.addEventListener('invalid', () => {
   } else {
     priceInputElement.setCustomValidity('');
   }
+  priceInputElement.reportValidity();
 });
 
 // ! Синхронизация времен заезда и выекзда  ==   пункт 3.5 техзадания
@@ -67,37 +71,23 @@ timeinSelectElement.addEventListener('change', (evt) => {
 });
 
 // ! Ограничение количества гостей  ==   пункт 3.6 техзадания
+const ONE_ROOM_ERROR_MNESSAGE = 'Количество гостей не может быть больше 1';
+const TWO_ROOM_ERROR_MNESSAGE = 'Количество гостей не может быть больше 2';
+const THREE_ROOM_ERROR_MNESSAGE = 'Количество гостей должно быть 1, 2 или 3';
+const HUNDRED_ROOM_ERROR_MNESSAGE = '100 комнат - не длля гостей';
 const roomNumberSelectElement = document.querySelector('#room_number');
 const capacitySelectElement = document.querySelector('#capacity');
-const capacityOptionElements = capacitySelectElement.querySelectorAll('option');
 
-if (roomNumberSelectElement.value === '1') {
-  capacityOptionElements[0].setAttribute('disabled', 'disabled');
-  capacityOptionElements[1].setAttribute('disabled', 'disabled');
-  capacityOptionElements[2].removeAttribute('disabled', 'disabled');
-  capacityOptionElements[3].setAttribute('disabled', 'disabled');
-}
-
-// roomNumber.addEventListener('change', (evt) => {
-//   if (evt.target.value === '1') {
-//     options[0].setAttribute('disabled', 'disabled');
-//     options[1].setAttribute('disabled', 'disabled');
-//     options[2].removeAttribute('disabled', 'disabled');
-//     options[3].setAttribute('disabled', 'disabled');
-//   } else if (evt.target.value === '2') {
-//     options[1].removeAttribute('disabled', 'disabled');
-//     options[2].removeAttribute('disabled', 'disabled');
-//     options[0].setAttribute('disabled', 'disabled');
-//     options[3].setAttribute('disabled', 'disabled');
-//   } else if (evt.target.value === '3') {
-//     options[0].removeAttribute('disabled', 'disabled');
-//     options[1].removeAttribute('disabled', 'disabled');
-//     options[2].removeAttribute('disabled', 'disabled');
-//     options[3].setAttribute('disabled', 'disabled');
-//   } else if (evt.target.value === '100') {
-//     options[0].setAttribute('disabled', 'disabled');
-//     options[1].setAttribute('disabled', 'disabled');
-//     options[2].setAttribute('disabled', 'disabled');
-//     options[3].removeAttribute('disabled', 'disabled');
-//   }
-// });
+capacitySelectElement.addEventListener('change', (evt) => {
+  if (roomNumberSelectElement.value === '1' && ['3', '2', '0'].includes(evt.target.value)) {
+    capacitySelectElement.setCustomValidity(ONE_ROOM_ERROR_MNESSAGE);
+  } else if (roomNumberSelectElement.value === '2' && ['3', '0'].includes(evt.target.value)) {
+    capacitySelectElement.setCustomValidity(TWO_ROOM_ERROR_MNESSAGE);
+  } else if (roomNumberSelectElement.value === '3' && ['0'].includes(evt.target.value)) {
+    capacitySelectElement.setCustomValidity(THREE_ROOM_ERROR_MNESSAGE);
+  } else if (roomNumberSelectElement.value === '100' && ['3', '2', '1'].includes(evt.target.value)) {
+    capacitySelectElement.setCustomValidity(HUNDRED_ROOM_ERROR_MNESSAGE);
+  } else {
+    capacitySelectElement.setCustomValidity('');
+  }
+});
