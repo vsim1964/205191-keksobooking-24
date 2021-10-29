@@ -74,7 +74,7 @@ function createPointsOfMap(dataForMap) {
 
     marker
       .addTo(map)
-      .bindPopup(createCustomPopup());
+      .bindPopup(createCustomPopup(point));
   });
 }
 

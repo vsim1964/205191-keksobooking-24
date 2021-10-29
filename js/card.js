@@ -2,11 +2,6 @@ import {
   PROPERTIES
 } from './data.js';
 
-// ! Получение массива шаблонов объвлений
-// const cardTemplate = document.querySelector('#card').content;
-// const popup = cardTemplate.querySelector('.popup');
-// const cards = [];
-
 // ! Обработка аватаров
 function createAvatars(advert, cardElement) {
   if (advert.author.avatar) {
