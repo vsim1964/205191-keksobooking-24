@@ -1,7 +1,6 @@
 import {
   PROPERTIES
 } from './data.js';
-
 // ! Получение массива шаблонов объвлений
 const cardTemplate = document.querySelector('#card').content;
 const popup = cardTemplate.querySelector('.popup');
@@ -122,10 +121,9 @@ function addAdvertsCards(advertsArray) {
     cards[i] = popup.cloneNode(true);
   }
   createCards(advertsArray);
-  const cardPrint = document.querySelector('#map-canvas');
-  cardPrint.appendChild(cards[0]);
 }
 
 export {
-  addAdvertsCards
+  addAdvertsCards,
+  cards
 };

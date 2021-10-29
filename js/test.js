@@ -39,32 +39,32 @@ marker.on('moveend', (evt) => {
 });
 
 // ! Получение точек из массива
-// {
-//   avatar: 'img/avatars/user01.png'
-// },
-// offer: {
-//     title: 'Хорошее жилье',
-//     address: '35.69932, 139.73265',
-//     price: 962733,
-//     type: 'palace',
-//     rooms: 8,
-//     guests: 4,
-//     checkin: '14:00',
-//     checkout: '13:00',
-//     features: [Object],
-//     description: 'Квартира уютная и просторная, тихая, заезжай и живи, все в состоянии нового. Подъезд чистый и без запаха.',
-//     photos: [Object]
-//   },
-//   location: {
-//     lat: 35.69932,
-//     lng: 139.73265
-//   }
-// },
+{
+  avatar: 'img/avatars/user01.png'
+},
+offer: {
+    title: 'Хорошее жилье',
+    address: '35.69932, 139.73265',
+    price: 962733,
+    type: 'palace',
+    rooms: 8,
+    guests: 4,
+    checkin: '14:00',
+    checkout: '13:00',
+    features: [Object],
+    description: 'Квартира уютная и просторная, тихая, заезжай и живи, все в состоянии нового. Подъезд чистый и без запаха.',
+    photos: [Object]
+  },
+  location: {
+    lat: 35.69932,
+    lng: 139.73265
+  }
+},
 
 function createCustomPopup(point) {
   const balloonTemplate = document.querySelector('#card').content.querySelector('.popup');
   const popupElement = balloonTemplate.cloneNode(true);
-  popupElement.querySelector('.popup__avatar').src = point.author.avatar;
+  popupElement.querySelector('.popup__title').src = point.author.avatar;
   popupElement.querySelector('.popup__title').textContent = point.offer.title;
   popupElement.querySelector('.popup__text--address').textContent = `Координаты: ${point.location.lat}, ${point.location.lng}`;
   popupElement.querySelector('.popup__text--price').innerHTML = `${point.offer.price} <span>₽/ночь</span>`;
@@ -81,7 +81,6 @@ function createCustomPopup(point) {
 
 function createPointsOfMap(dataForMap) {
   dataForMap.forEach((point) => {
-    const {
       location: {
         lat,
         lng,
@@ -102,8 +101,8 @@ function createPointsOfMap(dataForMap) {
     });
 
     marker
-      .addTo(map)
-      .bindPopup(createCustomPopup(point));
+    .addTo(map)
+    .bindPopup(createCustomPopup(point));
   });
 }
 
