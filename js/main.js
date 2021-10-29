@@ -3,9 +3,6 @@ import {
   createFlat
 } from './flat-create.js';
 import {
-  addAdvertsCards
-} from './card.js';
-import {
   createPointsOfMap
 } from './map.js';
 import {
@@ -19,7 +16,6 @@ for (let i = 0; i < advertsCount; i++) {
   adverts[i] = createFlat(i);
 }
 
-addAdvertsCards(adverts);
 createPointsOfMap(adverts);
 inactive();
-active()
+active();

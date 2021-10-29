@@ -1,3 +1,7 @@
+import {
+  createCard
+} from './card.js';
+
 // ! Создание интерактивного окна карты
 const map = L.map('map-canvas')
   .on('load', () => {})
@@ -41,17 +45,7 @@ marker.on('moveend', (evt) => {
 function createCustomPopup(point) {
   const balloonTemplate = document.querySelector('#card').content.querySelector('.popup');
   const popupElement = balloonTemplate.cloneNode(true);
-  popupElement.querySelector('.popup__avatar').src = point.author.avatar;
-  popupElement.querySelector('.popup__title').textContent = point.offer.title;
-  popupElement.querySelector('.popup__text--address').textContent = `Координаты: ${point.location.lat}, ${point.location.lng}`;
-  popupElement.querySelector('.popup__text--price').innerHTML = `${point.offer.price} <span>₽/ночь</span>`;
-  popupElement.querySelector('.popup__type').textContent = point.offer.type;
-  popupElement.querySelector('.popup__text--capacity').textContent = `${point.offer.rooms} комнат для
-    ${point.offer.guests} гостей`;
-  popupElement.querySelector('.popup__text--time').textContent = `Заезд после ${point.offer.checkin}, выезд до ${point.offer.checkout}`;
-  popupElement.querySelector('.popup__features').textContent = point.offer.features;
-  popupElement.querySelector('.popup__description').textContent = point.offer.description;
-  popupElement.querySelector('.popup__photo').src = point.offer.photos;
+  createCard(point, popupElement);
 
   return popupElement;
 }
@@ -80,7 +74,7 @@ function createPointsOfMap(dataForMap) {
 
     marker
       .addTo(map)
-      .bindPopup(createCustomPopup(point));
+      .bindPopup(createCustomPopup());
   });
 }
 
