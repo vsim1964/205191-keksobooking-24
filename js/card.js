@@ -1,10 +1,11 @@
 import {
   PROPERTIES
 } from './data.js';
+
 // ! Получение массива шаблонов объвлений
-const cardTemplate = document.querySelector('#card').content;
-const popup = cardTemplate.querySelector('.popup');
-const cards = [];
+// const cardTemplate = document.querySelector('#card').content;
+// const popup = cardTemplate.querySelector('.popup');
+// const cards = [];
 
 // ! Обработка аватаров
 function createAvatars(advert, cardElement) {
@@ -15,22 +16,20 @@ function createAvatars(advert, cardElement) {
   }
 }
 
-
 // ! Обработка фотографий недвижимости
 function createImages(advert, cardElement) {
   const photos = cardElement.querySelector('.popup__photos');
   const photo = photos.querySelector('.popup__photo');
-  if (advert.offer.photos === undefined || advertsArray[i].offer.photos.length === 0) {
+  if (advert.offer.photos === undefined || advert.offer.photos.length === 0) {
     photos.remove();
   }
-  for (let k = 0; k < advertsArray[i].offer.photos.length; k++) {
+  for (let k = 0; k < advert.offer.photos.length; k++) {
     const clonedPhoto = photo.cloneNode();
     clonedPhoto.src = advert.offer.photos[k];
     photos.appendChild(clonedPhoto);
   }
   photo.remove();
 }
-
 
 // ! Выбор типа недвижимости
 function getFlatType(flatType) {
@@ -65,7 +64,6 @@ function createFeatures(advert, cardElement) {
     }
   }
 }
-
 
 // ! Заполнение карточки
 function createCard(advert, cardElement) {
