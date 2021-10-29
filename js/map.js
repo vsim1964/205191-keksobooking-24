@@ -1,7 +1,3 @@
-import {
-  cards
-} from './card.js';
-
 // ! Создание интерактивного окна карты
 const map = L.map('map-canvas')
   .on('load', () => {})
@@ -34,32 +30,13 @@ const marker = L.marker({
 marker.addTo(map);
 
 // ! Получение координат
+const addressInputElement = document.querySelector('#address');
 marker.on('moveend', (evt) => {
-  console.log(evt.target.getLatLng());
+  const coordinates = evt.target.getLatLng();
+  addressInputElement.value = coordinates;
 });
 
 // ! Получение точек из массива
-// {
-//   avatar: 'img/avatars/user01.png'
-// },
-// offer: {
-//     title: 'Хорошее жилье',
-//     address: '35.69932, 139.73265',
-//     price: 962733,
-//     type: 'palace',
-//     rooms: 8,
-//     guests: 4,
-//     checkin: '14:00',
-//     checkout: '13:00',
-//     features: [Object],
-//     description: 'Квартира уютная и просторная, тихая, заезжай и живи, все в состоянии нового. Подъезд чистый и без запаха.',
-//     photos: [Object]
-//   },
-//   location: {
-//     lat: 35.69932,
-//     lng: 139.73265
-//   }
-// },
 
 function createCustomPopup(point) {
   const balloonTemplate = document.querySelector('#card').content.querySelector('.popup');
