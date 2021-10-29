@@ -67,9 +67,9 @@ function createFeatures(advert, cardElement) {
 
 // ! Заполнение карточки
 function createCard(advert, cardElement) {
-  createAvatars(advert);
-  createImages(advert);
-  createFeatures(advert);
+  createAvatars(advert, cardElement);
+  createImages(advert, cardElement);
+  createFeatures(advert, cardElement);
   if (advert.offer.title) {
     cardElement.querySelector('.popup__title').textContent = advert.offer.title;
   } else {
@@ -92,7 +92,7 @@ function createCard(advert, cardElement) {
   }
   if (advert.offer.rooms && advert.offer.guests) {
     cardElement.querySelector('.popup__text--capacity').textContent = `${advert.offer.rooms} комнаты для
-    ${cardElement.offer.guests} гостей`;
+    ${advert.offer.guests} гостей`;
   } else {
     cardElement.querySelector('.popup__text--capacity').remove();
   }
