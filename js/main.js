@@ -22,11 +22,4 @@ for (let i = 0; i < advertsCount; i++) {
 addAdvertsCards(adverts);
 createPointsOfMap(adverts);
 inactive();
-const map = L.map('map-canvas')
-  .on('load', () => {
-    active();
-  })
-  .setView({
-    lat: 35.69968,
-    lng: 139.75708,
-  }, 10);
+active()
