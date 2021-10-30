@@ -1,14 +1,24 @@
 import {
+  inactive,
+  active
+} from './swift.js';
+import {
   createCard
 } from './card.js';
 
+inactive();
+
 // ! Создание интерактивного окна карты
-const map = L.map('map-canvas')
-  .on('load', () => {})
-  .setView({
-    lat: 35.69968,
-    lng: 139.75708,
-  }, 10);
+const map = L.map('map-canvas');
+
+map.on('load', () => {
+  active();
+});
+
+map.setView({
+  lat: 35.69968,
+  lng: 139.75708,
+}, 10);
 
 // ! Подключение сервиса карт
 L.tileLayer(
