@@ -5,7 +5,7 @@ const advertForm = document.querySelector('.ad-form');
 const advertFormHeader = document.querySelector('.ad-form-header');
 const advertFormSections = document.querySelectorAll('.ad-form__element');
 
-function active() {
+function setActiveState() {
   mapFiltersForm.classList.remove('map__filters--disabled');
   mapFilters.forEach((mapFilter) => {
     mapFilter.removeAttribute('disabled', 'disabled');
@@ -18,7 +18,7 @@ function active() {
   });
 }
 
-function inactive() {
+function setInactiveState() {
   mapFiltersForm.classList.add('map__filters--disabled');
   mapFilters.forEach((mapFilter) => {
     mapFilter.removeAttribute('disabled', 'disabled');
@@ -33,6 +33,6 @@ function inactive() {
 }
 
 export {
-  active,
-  inactive
+  setActiveState,
+  setInactiveState
 };

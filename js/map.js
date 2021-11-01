@@ -1,0 +1,95 @@
+import {
+  setActiveState,
+  setInactiveState
+} from './swift.js';
+import {
+  createCard
+} from './card.js';
+
+setInactiveState();
+
+// ! Создание интерактивного окна карты
+const MAP_LATITUDE = 35.69968;
+const MAP_LONGITUDE = 139.75708;
+const map = L.map('map-canvas');
+map.on('load', () => {
+  setActiveState();
+});
+
+map.setView({
+  lat: MAP_LATITUDE,
+  lng: MAP_LONGITUDE,
+}, 10);
+
+// ! Подключение сервиса карт
+L.tileLayer(
+  'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  },
+).addTo(map);
+
+// ! Маркер
+const mainPinIcon = L.icon({
+  iconUrl: 'img/main-pin.svg',
+  iconSize: [52, 52],
+  iconAnchor: [26, 52],
+});
+
+const marker = L.marker({
+  lat: MAP_LATITUDE,
+  lng: MAP_LONGITUDE,
+}, {
+  draggable: true,
+  icon: mainPinIcon,
+});
+marker.addTo(map);
+
+// ! Получение координат
+const addressInputElement = document.querySelector('#address');
+addressInputElement.value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
+marker.on('moveend', (evt) => {
+  const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)}, ${(evt.target.getLatLng().lng).toFixed(5)}`;
+  addressInputElement.value = coordinates;
+});
+
+// ! Получение точек из массива
+
+function createCustomPopup(point) {
+  const balloonTemplate = document.querySelector('#card').content.querySelector('.popup');
+  const popupElement = balloonTemplate.cloneNode(true);
+  createCard(point, popupElement);
+
+  return popupElement;
+}
+
+function createPointsOfMap(dataForMap) {
+  dataForMap.forEach((point) => {
+    const {
+      location: {
+        lat,
+        lng,
+      },
+    } = point;
+
+    const icon = L.icon({
+      iconUrl: 'img/pin.svg',
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+    });
+
+    const scorer = L.marker({
+      lat,
+      lng,
+    }, {
+      icon,
+    });
+
+    scorer
+      .addTo(map)
+      .bindPopup(createCustomPopup(point));
+  });
+}
+
+export {
+  createPointsOfMap
+};
