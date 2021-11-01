@@ -1,3 +1,8 @@
+import {
+  getSuccessMessage,
+  getErrorMessage
+} from './utilities.js';
+
 const MIN_NAME_LENGTH = 30;
 const MAX_NAME_LENGTH = 100;
 const ONE_ROOM_ERROR_MESSAGE = 'Количество гостей не может быть больше 1';
@@ -93,3 +98,38 @@ capacitySelectElement.addEventListener('change', (evt) => {
   }
   capacitySelectElement.reportValidity();
 });
+
+
+// ! Отправка данных
+
+const setFormSubmit = (onSuccess, onError) => {
+
+  const submitButtonElement = document.querySelector('.ad-form__submit');
+  submitButtonElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const formData = new FormData(evt.target);
+
+    fetch('https://24.javascript.pages.academy/keksobooking', {
+        method: 'POST',
+        body: formData,
+      })
+      .then((responce) => {
+        if (response.ok) {
+          onSuccess();
+        } else {
+          onError();
+        }
+      })
+      .catch(() => {
+        onError();
+      });
+  });
+};
+
+export {
+  setFormSubmit
+};
+
+// ! onSuccess, onError - callback на случай успешной/неуспешной отправки формы
+//

@@ -63,8 +63,8 @@ function createFeatures(advert, cardElement) {
 // ! Заполнение карточки
 function createCard(advert, cardElement) {
   createAvatars(advert, cardElement);
-  createImages(advert, cardElement);
-  createFeatures(advert, cardElement);
+  // createImages(advert, cardElement);
+  // createFeatures(advert, cardElement);
   if (advert.offer.title) {
     cardElement.querySelector('.popup__title').textContent = advert.offer.title;
   } else {

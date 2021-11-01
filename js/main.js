@@ -1,15 +1,18 @@
-import './forms.js';
 import {
-  createFlat
-} from './flat-create.js';
+  setFormSubmit
+} from './forms.js';
 import {
   createPointsOfMap
 } from './map.js';
+import {
+  getSuccessMessage,
+  getErrorMessage
+} from './utilities.js';
 
-const advertsCount = 10;
-const adverts = [];
-for (let i = 0; i < advertsCount; i++) {
-  adverts[i] = createFlat(i);
-}
+fetch('https://24.javascript.pages.academy/keksobooking/data')
+  .then((response) => response.json())
+  .then((adverts) => {
+    createPointsOfMap(adverts);
+  });
 
-createPointsOfMap(adverts);
+setFormSubmit(getSuccessMessage, getErrorMessage);

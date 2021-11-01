@@ -19,7 +19,26 @@ function getRandomFloat(min, max, fraction) {
   return +randomNumber.toFixed(fraction);
 }
 
+
+const bodyElement = document.querySelector('body');
+
+const successTemplate = document.querySelector('#success');
+const successModalElement = successTemplate.content.cloneNode(true);
+
+function getSuccessMessage() {
+  bodyElement.appendChild(successModalElement);
+}
+
+const errorTemplate = document.querySelector('#error');
+const errorModalElement = errorTemplate.content.cloneNode(true);
+
+function getErrorMessage() {
+  bodyElement.appendChild(errorModalElement);
+}
+
 export {
   getRandomInteger,
-  getRandomFloat
+  getRandomFloat,
+  getSuccessMessage,
+  getErrorMessage
 };
