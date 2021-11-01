@@ -1,18 +1,18 @@
 import {
-  inactive,
-  active
+  setActiveState,
+  setInactiveState
 } from './swift.js';
 import {
   createCard
 } from './card.js';
 
-inactive();
+setInactiveState();
 
 // ! Создание интерактивного окна карты
 const map = L.map('map-canvas');
 
 map.on('load', () => {
-  active();
+  setActiveState();
 });
 
 map.setView({
@@ -45,8 +45,9 @@ marker.addTo(map);
 
 // ! Получение координат
 const addressInputElement = document.querySelector('#address');
+addressInputElement.value = `${map.getCenter().lat},  ${map.getCenter().lng}`;
 marker.on('moveend', (evt) => {
-  const coordinates = evt.target.getLatLng();
+  const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)},  ${(evt.target.getLatLng().lng).toFixed(5)}`;
   addressInputElement.value = coordinates;
 });
 
@@ -75,14 +76,14 @@ function createPointsOfMap(dataForMap) {
       iconAnchor: [20, 40],
     });
 
-    const marker = L.marker({
+    const scorer = L.marker({
       lat,
       lng,
     }, {
       icon,
     });
 
-    marker
+    scorer
       .addTo(map)
       .bindPopup(createCustomPopup(point));
   });
