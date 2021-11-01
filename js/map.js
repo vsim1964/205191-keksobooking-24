@@ -36,8 +36,8 @@ const mainPinIcon = L.icon({
 });
 
 const marker = L.marker({
-  lat: 35.69968,
-  lng: 139.75708,
+  lat: MAP_LATITUDE,
+  lng: MAP_LONGITUDE,
 }, {
   draggable: true,
   icon: mainPinIcon,
@@ -46,7 +46,7 @@ marker.addTo(map);
 
 // ! Получение координат
 const addressInputElement = document.querySelector('#address');
-addressInputElement.value = `${map.getCenter().lat}, ${map.getCenter().lng}`;
+addressInputElement.value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
 marker.on('moveend', (evt) => {
   const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)}, ${(evt.target.getLatLng().lng).toFixed(5)}`;
   addressInputElement.value = coordinates;
