@@ -9,15 +9,16 @@ import {
 setInactiveState();
 
 // ! Создание интерактивного окна карты
+const MAP_LATITUDE = 35.69968;
+const MAP_LONGITUDE = 139.75708;
 const map = L.map('map-canvas');
-
 map.on('load', () => {
   setActiveState();
 });
 
 map.setView({
-  lat: 35.69968,
-  lng: 139.75708,
+  lat: MAP_LATITUDE,
+  lng: MAP_LONGITUDE,
 }, 10);
 
 // ! Подключение сервиса карт
@@ -45,9 +46,9 @@ marker.addTo(map);
 
 // ! Получение координат
 const addressInputElement = document.querySelector('#address');
-addressInputElement.value = `${map.getCenter().lat},  ${map.getCenter().lng}`;
+addressInputElement.value = `${map.getCenter().lat}, ${map.getCenter().lng}`;
 marker.on('moveend', (evt) => {
-  const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)},  ${(evt.target.getLatLng().lng).toFixed(5)}`;
+  const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)}, ${(evt.target.getLatLng().lng).toFixed(5)}`;
   addressInputElement.value = coordinates;
 });
 
