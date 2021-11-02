@@ -93,19 +93,3 @@ capacitySelectElement.addEventListener('change', (evt) => {
   }
   capacitySelectElement.reportValidity();
 });
-
-// ! Отправка данных
-
-// window.onkeydown = function (event) {
-//   event = event || window.event;
-//   if (event.keyCode === 27) {
-//     removeSuccessMessage();
-//     removeErrorMessage();
-//     document.querySelector('.ad-form').reset();
-//   }
-// };
-// window.onclick = function () {
-//   removeSuccessMessage();
-//   removeErrorMessage();
-//   document.querySelector('.ad-form').reset();
-// };

@@ -1,7 +1,10 @@
 import {
   createPointsOfMap
 } from './map.js';
-
+import {
+  closeSuccessModalElement,
+  closeErrorModalElement
+} from './utilities.js';
 const getData = () => {
   fetch('https://24.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
@@ -24,11 +27,14 @@ const sendData = (onSuccess, onError) => {
     }).then((response) => {
       if (response.ok) {
         onSuccess();
+        closeSuccessModalElement();
       } else {
         onError();
+        closeErrorModalElement();
       }
     }).catch(() => {
       onError();
+      closeErrorModalElement();
     });
   });
 };

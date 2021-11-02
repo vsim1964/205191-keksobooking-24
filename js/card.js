@@ -1,6 +1,11 @@
-import {
-  PROPERTIES
-} from './data.js';
+const PROPERTIES = [
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner',
+];
 
 // ! Обработка аватаров
 function createAvatars(advert, cardElement) {
