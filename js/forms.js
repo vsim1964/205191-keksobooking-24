@@ -111,31 +111,33 @@ const setFormSubmit = (onSuccess, onError) => {
     const formData = new FormData(evt.target);
 
     fetch('https://24.javascript.pages.academy/keksobooking', {
-        method: 'POST',
-        body: formData,
-      })
-      .then(() => {
+      method: 'POST',
+      body: formData,
+    }).then((response) => {
+      if (response.ok) {
         onSuccess();
-      })
-      .catch(() => {
+      } else {
         onError();
-      });
+      }
+    }).catch(() => {
+      onError();
+    });
   });
 };
 
-// window.onkeydown = function (event) {
-//   event = event || window.event;
-//   if (event.keyCode === 27) {
-//     removeSuccessMessage();
-//     removeErrorMessage();
-//     document.querySelector('.ad-form').reset();
-//   }
-// };
-// window.onclick = function () {
-//   removeSuccessMessage();
-//   removeErrorMessage();
-//   document.querySelector('.ad-form').reset();
-// };
+window.onkeydown = function (event) {
+  event = event || window.event;
+  if (event.keyCode === 27) {
+    removeSuccessMessage();
+    removeErrorMessage();
+    document.querySelector('.ad-form').reset();
+  }
+};
+window.onclick = function () {
+  removeSuccessMessage();
+  removeErrorMessage();
+  document.querySelector('.ad-form').reset();
+};
 
 
 export {
