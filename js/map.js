@@ -1,4 +1,8 @@
 import {
+  MAP_LATITUDE,
+  MAP_LONGITUDE
+} from './data.js';
+import {
   setActiveState,
   setInactiveState
 } from './swift.js';
@@ -9,8 +13,7 @@ import {
 setInactiveState();
 
 // ! Создание интерактивного окна карты
-const MAP_LATITUDE = 35.69968;
-const MAP_LONGITUDE = 139.75708;
+
 const map = L.map('map-canvas');
 map.on('load', () => {
   setActiveState();

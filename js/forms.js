@@ -1,11 +1,13 @@
-const MIN_NAME_LENGTH = 30;
-const MAX_NAME_LENGTH = 100;
-const ONE_ROOM_ERROR_MESSAGE = 'Количество гостей не может быть больше 1';
-const TWO_ROOM_ERROR_MESSAGE = 'Количество гостей не может быть больше 2';
-const THREE_ROOM_ERROR_MESSAGE = 'Количество гостей должно быть 1, 2 или 3';
-const HUNDRED_ROOM_ERROR_MESSAGE = '100 комнат - не длля гостей';
-const MAX_PRICE_ERROR_MESSAGE = 'Превышена максимальная цена - 1 000 000';
-const EMPTY_FIELD_ERROR_MESSAGE = 'Поле не должно быть пустым. Напишите цену, не меньше минимальной';
+import {
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+  ONE_ROOM_ERROR_MESSAGE,
+  TWO_ROOM_ERROR_MESSAGE,
+  THREE_ROOM_ERROR_MESSAGE,
+  HUNDRED_ROOM_ERROR_MESSAGE,
+  MAX_PRICE_ERROR_MESSAGE,
+  EMPTY_FIELD_ERROR_MESSAGE
+} from './data.js';
 
 // ! Валидация формы Заголовок == пункт 3.1 техзадания
 const titleInputElement = document.querySelector('#title');

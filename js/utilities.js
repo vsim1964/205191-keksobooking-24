@@ -27,6 +27,12 @@ const successModalElement = successTemplate.content.cloneNode(true);
 
 function getSuccessMessage() {
   bodyElement.appendChild(successModalElement);
+  successModalElement.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      successModalElement.remove();
+      document.querySelector('.ad-form').reset();
+    }
+  });
 }
 
 const errorTemplate = document.querySelector('#error');
@@ -34,29 +40,17 @@ const errorModalElement = errorTemplate.content.cloneNode(true);
 
 function getErrorMessage() {
   bodyElement.appendChild(errorModalElement);
-}
-
-function closeSuccessModalElement() {
-  successModalElement.onkeydown = function (event) {
-    if (event.keyCode === 27) {
+  successModalElement.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
       successModalElement.remove();
       document.querySelector('.ad-form').reset();
     }
-  };
-}
-
-function closeErrorModalElement() {
-  errorModalElement.onclick = function () {
-    errorModalElement.remove();
-    document.querySelector('.ad-form').reset();
-  };
+  });
 }
 
 export {
   getRandomInteger,
   getRandomFloat,
   getSuccessMessage,
-  getErrorMessage,
-  closeSuccessModalElement,
-  closeErrorModalElement
+  getErrorMessage
 };

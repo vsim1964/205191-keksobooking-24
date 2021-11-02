@@ -3,7 +3,7 @@ import {
 } from './api.js';
 import {
   getSuccessMessage,
-  getErrorMessage,
+  getErrorMessage
 } from './utilities.js';
 import {
   getData
