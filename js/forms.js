@@ -1,6 +1,6 @@
 import {
-  getSuccessMessage,
-  getErrorMessage
+  removeSuccessMessage,
+  removeErrorMessage
 } from './utilities.js';
 
 const MIN_NAME_LENGTH = 30;
@@ -104,8 +104,8 @@ capacitySelectElement.addEventListener('change', (evt) => {
 
 const setFormSubmit = (onSuccess, onError) => {
 
-  const submitButtonElement = document.querySelector('.ad-form__submit');
-  submitButtonElement.addEventListener('submit', (evt) => {
+  const submitFormElement = document.querySelector('.ad-form');
+  submitFormElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.target);
@@ -114,18 +114,29 @@ const setFormSubmit = (onSuccess, onError) => {
         method: 'POST',
         body: formData,
       })
-      .then((responce) => {
-        if (response.ok) {
-          onSuccess();
-        } else {
-          onError();
-        }
+      .then(() => {
+        onSuccess();
       })
       .catch(() => {
         onError();
       });
   });
 };
+
+// window.onkeydown = function (event) {
+//   event = event || window.event;
+//   if (event.keyCode === 27) {
+//     removeSuccessMessage();
+//     removeErrorMessage();
+//     document.querySelector('.ad-form').reset();
+//   }
+// };
+// window.onclick = function () {
+//   removeSuccessMessage();
+//   removeErrorMessage();
+//   document.querySelector('.ad-form').reset();
+// };
+
 
 export {
   setFormSubmit

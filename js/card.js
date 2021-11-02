@@ -17,6 +17,7 @@ function createImages(advert, cardElement) {
   const photo = photos.querySelector('.popup__photo');
   if (advert.offer.photos === undefined || advert.offer.photos.length === 0) {
     photos.remove();
+    return;
   }
   for (let k = 0; k < advert.offer.photos.length; k++) {
     const clonedPhoto = photo.cloneNode();
@@ -46,6 +47,7 @@ function createFeatures(advert, cardElement) {
   const features = cardElement.querySelector('.popup__features');
   if (advert.offer.features === undefined || advert.offer.features.length === 0) {
     features.remove();
+    return;
   }
   for (let k = 0; k < PROPERTIES.length; k++) {
     if (advert.offer.features.includes(PROPERTIES[k])) {
@@ -63,8 +65,8 @@ function createFeatures(advert, cardElement) {
 // ! Заполнение карточки
 function createCard(advert, cardElement) {
   createAvatars(advert, cardElement);
-  // createImages(advert, cardElement);
-  // createFeatures(advert, cardElement);
+  createImages(advert, cardElement);
+  createFeatures(advert, cardElement);
   if (advert.offer.title) {
     cardElement.querySelector('.popup__title').textContent = advert.offer.title;
   } else {

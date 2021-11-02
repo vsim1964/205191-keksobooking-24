@@ -29,6 +29,9 @@ function getSuccessMessage() {
   bodyElement.appendChild(successModalElement);
 }
 
+function removeSuccessMessage() {
+  successModalElement.remove();
+}
 const errorTemplate = document.querySelector('#error');
 const errorModalElement = errorTemplate.content.cloneNode(true);
 
@@ -36,9 +39,15 @@ function getErrorMessage() {
   bodyElement.appendChild(errorModalElement);
 }
 
+function removeErrorMessage() {
+  errorModalElement.remove();
+}
+
 export {
   getRandomInteger,
   getRandomFloat,
   getSuccessMessage,
-  getErrorMessage
+  getErrorMessage,
+  removeSuccessMessage,
+  removeErrorMessage
 };
