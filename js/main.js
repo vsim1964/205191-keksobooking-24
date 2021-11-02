@@ -1,6 +1,6 @@
 import {
-  setFormSubmit
-} from './forms.js';
+  sendData
+} from './api.js';
 import {
   getSuccessMessage,
   getErrorMessage
@@ -12,4 +12,4 @@ import {
 
 getData();
 
-setFormSubmit(getSuccessMessage, getErrorMessage);
+sendData(getSuccessMessage, getErrorMessage);
