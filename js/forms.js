@@ -99,7 +99,6 @@ capacitySelectElement.addEventListener('change', (evt) => {
   capacitySelectElement.reportValidity();
 });
 
-
 // ! Отправка данных
 
 const setFormSubmit = (onSuccess, onError) => {
@@ -125,24 +124,21 @@ const setFormSubmit = (onSuccess, onError) => {
   });
 };
 
-window.onkeydown = function (event) {
-  event = event || window.event;
-  if (event.keyCode === 27) {
-    removeSuccessMessage();
-    removeErrorMessage();
-    document.querySelector('.ad-form').reset();
-  }
-};
-window.onclick = function () {
-  removeSuccessMessage();
-  removeErrorMessage();
-  document.querySelector('.ad-form').reset();
-};
+// window.onkeydown = function (event) {
+//   event = event || window.event;
+//   if (event.keyCode === 27) {
+//     removeSuccessMessage();
+//     removeErrorMessage();
+//     document.querySelector('.ad-form').reset();
+//   }
+// };
+// window.onclick = function () {
+//   removeSuccessMessage();
+//   removeErrorMessage();
+//   document.querySelector('.ad-form').reset();
+// };
 
 
 export {
   setFormSubmit
 };
-
-// ! onSuccess, onError - callback на случай успешной/неуспешной отправки формы
-//
