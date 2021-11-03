@@ -48,13 +48,15 @@ const marker = L.marker({
 marker.addTo(map);
 
 // ! Получение координат
-const addressInputElement = document.querySelector('#address');
-addressInputElement.value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
-marker.on('moveend', (evt) => {
-  const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)}, ${(evt.target.getLatLng().lng).toFixed(5)}`;
-  addressInputElement.value = coordinates;
-});
-
+function getDefaultCoordinates() {
+  const addressInputElement = document.querySelector('#address');
+  addressInputElement.value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
+  marker.on('moveend', (evt) => {
+    const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)}, ${(evt.target.getLatLng().lng).toFixed(5)}`;
+    addressInputElement.value = coordinates;
+  });
+}
+getDefaultCoordinates();
 // ! Получение точек из массива
 
 function createCustomPopup(point) {
@@ -94,5 +96,6 @@ function createPointsOfMap(dataForMap) {
 }
 
 export {
-  createPointsOfMap
+  createPointsOfMap,
+  getDefaultCoordinates
 };

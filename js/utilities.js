@@ -1,3 +1,7 @@
+import {
+  getDefaultCoordinates
+} from './map.js';
+
 function getRandomInteger(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -19,33 +23,47 @@ function getRandomFloat(min, max, fraction) {
   return +randomNumber.toFixed(fraction);
 }
 
-
 const bodyElement = document.querySelector('body');
 
 const successTemplate = document.querySelector('#success');
 const successModalElement = successTemplate.content.cloneNode(true);
+const successModalDivElement = successModalElement.querySelector('div');
+
+successModalDivElement.addEventListener('click', () => {
+  document.querySelector('.success').remove();
+  document.querySelector('.ad-form').reset();
+  getDefaultCoordinates();
+});
 
 function getSuccessMessage() {
-  bodyElement.appendChild(successModalElement);
-  successModalElement.addEventListener('keydown', (evt) => {
+  bodyElement.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
-      successModalElement.remove();
+      document.querySelector('.success').remove();
       document.querySelector('.ad-form').reset();
+      getDefaultCoordinates();
     }
   });
+  bodyElement.appendChild(successModalElement);
 }
 
 const errorTemplate = document.querySelector('#error');
 const errorModalElement = errorTemplate.content.cloneNode(true);
+const errorModalDivElement = errorModalElement.querySelector('div');
+
+errorModalDivElement.addEventListener('click', () => {
+  document.querySelector('.error').remove();
+  document.querySelector('.ad-form').reset();
+  getDefaultCoordinates();
+});
 
 function getErrorMessage() {
-  bodyElement.appendChild(errorModalElement);
-  successModalElement.addEventListener('keydown', (evt) => {
+  bodyElement.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
-      successModalElement.remove();
+      document.querySelector('.error').remove();
       document.querySelector('.ad-form').reset();
     }
   });
+  bodyElement.appendChild(errorModalElement);
 }
 
 export {
