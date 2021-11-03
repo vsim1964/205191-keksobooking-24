@@ -10,6 +10,7 @@ const getData = () => {
     });
 };
 
+
 const sendData = (onSuccess, onError) => {
 
   const submitFormElement = document.querySelector('.ad-form');
