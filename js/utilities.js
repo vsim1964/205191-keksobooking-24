@@ -53,7 +53,6 @@ const errorModalDivElement = errorModalElement.querySelector('div');
 errorModalDivElement.addEventListener('click', () => {
   document.querySelector('.error').remove();
   document.querySelector('.ad-form').reset();
-  getDefaultCoordinates();
 });
 
 function getErrorMessage() {
