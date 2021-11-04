@@ -16,6 +16,7 @@ const THREE_ROOM_ERROR_MESSAGE = 'Количество гостей должно
 const HUNDRED_ROOM_ERROR_MESSAGE = '100 комнат - не длля гостей';
 const MAX_PRICE_ERROR_MESSAGE = 'Превышена максимальная цена - 1 000 000';
 const EMPTY_FIELD_ERROR_MESSAGE = 'Поле не должно быть пустым. Напишите цену, не меньше минимальной';
+const submitFormElement = document.querySelector('.ad-form');
 
 export {
   PROPERTIES,
@@ -28,5 +29,6 @@ export {
   THREE_ROOM_ERROR_MESSAGE,
   HUNDRED_ROOM_ERROR_MESSAGE,
   MAX_PRICE_ERROR_MESSAGE,
-  EMPTY_FIELD_ERROR_MESSAGE
+  EMPTY_FIELD_ERROR_MESSAGE,
+  submitFormElement
 };

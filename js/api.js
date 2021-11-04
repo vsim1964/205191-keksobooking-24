@@ -13,27 +13,22 @@ const getData = () => {
 
 const sendData = (onSuccess, onError) => {
 
-  const submitFormElement = document.querySelector('.ad-form');
-  submitFormElement.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+  const formData = new FormData(evt.target);
 
-    const formData = new FormData(evt.target);
-
-    fetch('https://24.javascript.pages.academy/keksobooking', {
-      method: 'POST',
-      body: formData,
-    }).then((response) => {
-      if (response.ok) {
-        onSuccess();
-      } else {
-        onError();
-      }
-    }).catch(() => {
+  fetch('https://24.javascript.pages.academy/keksobooking', {
+    method: 'POST',
+    body: formData,
+  }).then((response) => {
+    if (response.ok) {
+      onSuccess();
+    } else {
       onError();
-    });
+    }
+  }).catch(() => {
+    onError();
   });
-
 };
+
 
 export {
   getData,
