@@ -36,14 +36,14 @@ function getSuccessMessage() {
   successModalDivElement.addEventListener('click', () => {
     document.querySelector('.success').remove();
     // document.querySelector('.ad-form').reset();
-    resetForm();
     resetMap();
+    resetForm();
   });
   bodyElement.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
       document.querySelector('.success').remove();
-      resetForm();
       resetMap();
+      resetForm();
     }
   });
   bodyElement.appendChild(successModalElement);
@@ -54,12 +54,10 @@ function getErrorMessage() {
   const errorModalDivElement = errorModalElement.querySelector('div');
   errorModalDivElement.addEventListener('click', () => {
     document.querySelector('.error').remove();
-    resetForm();
   });
   bodyElement.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
       document.querySelector('.error').remove();
-      resetForm();
     }
   });
   bodyElement.appendChild(errorModalElement);

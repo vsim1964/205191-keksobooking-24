@@ -6,7 +6,9 @@ import {
   THREE_ROOM_ERROR_MESSAGE,
   HUNDRED_ROOM_ERROR_MESSAGE,
   MAX_PRICE_ERROR_MESSAGE,
-  EMPTY_FIELD_ERROR_MESSAGE
+  EMPTY_FIELD_ERROR_MESSAGE,
+  MAP_LATITUDE,
+  MAP_LONGITUDE
 } from './data.js';
 
 // ! Валидация формы Заголовок == пункт 3.1 техзадания
@@ -99,20 +101,10 @@ capacitySelectElement.addEventListener('change', (evt) => {
 // ! RESET
 
 function resetForm() {
-  document.querySelector('.popup__title').value = '';
-  document.querySelector('.popup__text--price').value = '';
-  document.querySelector('.popup__type').value = '';
-  document.querySelector('.popup__text--capacity').value = '';
-  document.querySelector('.popup__text--time').value = '';
-  document.querySelector('.popup__description').value = '';
+  document.querySelector('.ad-form').reset();
+  document.querySelector('.map_filters').reset();
+  document.querySelector('#address').value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
 }
-// document.querySelector('.popup__title').reset();
-// document.querySelector('.popup__text--price').reset();
-// document.querySelector('.popup__type').reset();
-// document.querySelector('.popup__text--capacity').reset();
-// document.querySelector('.popup__text--time').reset();
-// document.querySelector('.popup__description').reset();
-
 
 export {
   resetForm

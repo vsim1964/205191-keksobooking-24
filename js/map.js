@@ -96,14 +96,19 @@ function createPointsOfMap(dataForMap) {
 }
 
 
-function resetMap(elem) {
-  elem.setLatLng(MAP_LATITUDE, MAP_LONGITUDE);
-  document.querySelector('#address').value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
-  document.querySelector('.popup').remove();
+function resetMap() {
+  map.closePopup();
+  map.setView({
+    lat: MAP_LATITUDE,
+    lng: MAP_LONGITUDE,
+  }, 10);
+  marker.setLatLng({
+    lat: MAP_LATITUDE,
+    lng: MAP_LONGITUDE,
+  });
 }
 
 export {
   createPointsOfMap,
-  resetMap,
-  marker
+  resetMap
 };
