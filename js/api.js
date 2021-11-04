@@ -11,9 +11,9 @@ const getData = () => {
 };
 
 
-const sendData = (onSuccess, onError) => {
+const sendData = (onSuccess, onError, data) => {
 
-  const formData = new FormData(evt.target);
+  const formData = new FormData(data);
 
   fetch('https://24.javascript.pages.academy/keksobooking', {
     method: 'POST',

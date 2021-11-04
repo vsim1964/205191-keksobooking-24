@@ -102,7 +102,7 @@ capacitySelectElement.addEventListener('change', (evt) => {
 
 function resetForm() {
   document.querySelector('.ad-form').reset();
-  document.querySelector('.map_filters').reset();
+  document.querySelector('.map__filters').reset();
   document.querySelector('#address').value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
 }
 
