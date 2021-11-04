@@ -95,3 +95,25 @@ capacitySelectElement.addEventListener('change', (evt) => {
   }
   capacitySelectElement.reportValidity();
 });
+
+// ! RESET
+
+function resetForm() {
+  document.querySelector('.popup__title').value = '';
+  document.querySelector('.popup__text--price').value = '';
+  document.querySelector('.popup__type').value = '';
+  document.querySelector('.popup__text--capacity').value = '';
+  document.querySelector('.popup__text--time').value = '';
+  document.querySelector('.popup__description').value = '';
+}
+// document.querySelector('.popup__title').reset();
+// document.querySelector('.popup__text--price').reset();
+// document.querySelector('.popup__type').reset();
+// document.querySelector('.popup__text--capacity').reset();
+// document.querySelector('.popup__text--time').reset();
+// document.querySelector('.popup__description').reset();
+
+
+export {
+  resetForm
+};

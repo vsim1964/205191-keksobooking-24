@@ -95,7 +95,15 @@ function createPointsOfMap(dataForMap) {
   });
 }
 
+
+function resetMap(elem) {
+  elem.setLatLng(MAP_LATITUDE, MAP_LONGITUDE);
+  document.querySelector('#address').value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
+  document.querySelector('.popup').remove();
+}
+
 export {
   createPointsOfMap,
-  getDefaultCoordinates
+  resetMap,
+  marker
 };

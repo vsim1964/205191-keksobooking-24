@@ -1,5 +1,8 @@
 import {
-  getDefaultCoordinates
+  resetForm
+} from './forms.js';
+import {
+  resetMap
 } from './map.js';
 
 function getRandomInteger(min, max) {
@@ -24,42 +27,39 @@ function getRandomFloat(min, max, fraction) {
 }
 
 const bodyElement = document.querySelector('body');
-
 const successTemplate = document.querySelector('#success');
-const successModalElement = successTemplate.content.cloneNode(true);
-const successModalDivElement = successModalElement.querySelector('div');
-
-successModalDivElement.addEventListener('click', () => {
-  document.querySelector('.success').remove();
-  document.querySelector('.ad-form').reset();
-  getDefaultCoordinates();
-});
+const errorTemplate = document.querySelector('#error');
 
 function getSuccessMessage() {
+  const successModalElement = successTemplate.content.cloneNode(true);
+  const successModalDivElement = successModalElement.querySelector('div');
+  successModalDivElement.addEventListener('click', () => {
+    document.querySelector('.success').remove();
+    // document.querySelector('.ad-form').reset();
+    resetForm();
+    resetMap();
+  });
   bodyElement.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
       document.querySelector('.success').remove();
-      document.querySelector('.ad-form').reset();
-      getDefaultCoordinates();
+      resetForm();
+      resetMap();
     }
   });
   bodyElement.appendChild(successModalElement);
 }
 
-const errorTemplate = document.querySelector('#error');
-const errorModalElement = errorTemplate.content.cloneNode(true);
-const errorModalDivElement = errorModalElement.querySelector('div');
-
-errorModalDivElement.addEventListener('click', () => {
-  document.querySelector('.error').remove();
-  document.querySelector('.ad-form').reset();
-});
-
 function getErrorMessage() {
+  const errorModalElement = errorTemplate.content.cloneNode(true);
+  const errorModalDivElement = errorModalElement.querySelector('div');
+  errorModalDivElement.addEventListener('click', () => {
+    document.querySelector('.error').remove();
+    resetForm();
+  });
   bodyElement.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
       document.querySelector('.error').remove();
-      document.querySelector('.ad-form').reset();
+      resetForm();
     }
   });
   bodyElement.appendChild(errorModalElement);
