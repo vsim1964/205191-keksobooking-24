@@ -5,15 +5,17 @@ import {
 } from './api.js';
 import {
   getSuccessMessage,
-  getErrorMessage
+  getErrorMessage,
+  getError
 } from './utilities.js';
 import {
   submitFormElement
 } from './data.js';
+import {
+  createPointsOfMap
+} from './map.js';
 
-
-getData();
-
+getData(createPointsOfMap, getError);
 
 submitFormElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
