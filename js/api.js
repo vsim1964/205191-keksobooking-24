@@ -1,12 +1,19 @@
-const getData = (onSuccess, onError) => {
+import {
+  createPointsOfMap
+} from './map.js';
+import {
+  ADVERTS_ON_MAP
+} from './data.js';
+
+const getData = () => {
   fetch('https://24.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
-    .then((data) => {
-      onSuccess(data);
-    }).catch(() => {
-      onError();
+    .then((adverts) => {
+      // createPointsOfMap(adverts);
+      createPointsOfMap(adverts.slice(0, ADVERTS_ON_MAP));
     });
 };
+
 
 const sendData = (onSuccess, onError, data) => {
 

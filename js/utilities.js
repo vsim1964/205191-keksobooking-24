@@ -29,13 +29,13 @@ function getRandomFloat(min, max, fraction) {
 const bodyElement = document.querySelector('body');
 const successTemplate = document.querySelector('#success');
 const errorTemplate = document.querySelector('#error');
-const getErrorTemplate = document.querySelector('#error');
 
 function getSuccessMessage() {
   const successModalElement = successTemplate.content.cloneNode(true);
   const successModalDivElement = successModalElement.querySelector('div');
   successModalDivElement.addEventListener('click', () => {
     document.querySelector('.success').remove();
+    // document.querySelector('.ad-form').reset();
     resetMap();
     resetForm();
   });
@@ -44,9 +44,6 @@ function getSuccessMessage() {
       document.querySelector('.success').remove();
       resetMap();
       resetForm();
-    } else {
-      bodyElement.removeEventListener();
-
     }
   });
   bodyElement.appendChild(successModalElement);
@@ -61,36 +58,14 @@ function getErrorMessage() {
   bodyElement.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
       document.querySelector('.error').remove();
-    } else {
-      bodyElement.removeEventListener();
-
     }
   });
   bodyElement.appendChild(errorModalElement);
 }
 
-
-function getError() {
-  const getErrorModalElement = getErrorTemplate.content.cloneNode(true);
-  const getErrorModalDivElement = getErrorModalElement.querySelector('div');
-  getErrorModalDivElement.addEventListener('click', () => {
-    document.querySelector('.error').remove();
-  });
-  bodyElement.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      document.querySelector('.error').remove();
-    } else {
-      bodyElement.removeEventListener();
-    }
-  });
-  bodyElement.appendChild(getErrorTemplate);
-}
-
-
 export {
   getRandomInteger,
   getRandomFloat,
   getSuccessMessage,
-  getErrorMessage,
-  getError
+  getErrorMessage
 };
