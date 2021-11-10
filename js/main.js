@@ -1,15 +1,23 @@
 import './forms.js';
 import {
-  createFlat
-} from './flat-create.js';
+  getData,
+  sendData
+} from './api.js';
+import {
+  getSuccessMessage,
+  getErrorMessage
+} from './utilities.js';
+import {
+  submitFormElement
+} from './data.js';
 import {
   createPointsOfMap
 } from './map.js';
 
-const advertsCount = 10;
-const adverts = [];
-for (let i = 0; i < advertsCount; i++) {
-  adverts[i] = createFlat(i);
-}
 
-createPointsOfMap(adverts);
+getData(createPointsOfMap, getErrorMessage);
+
+submitFormElement.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  sendData(getSuccessMessage, getErrorMessage, evt.target);
+});

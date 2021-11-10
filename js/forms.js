@@ -1,11 +1,15 @@
-const MIN_NAME_LENGTH = 30;
-const MAX_NAME_LENGTH = 100;
-const ONE_ROOM_ERROR_MESSAGE = 'Количество гостей не может быть больше 1';
-const TWO_ROOM_ERROR_MESSAGE = 'Количество гостей не может быть больше 2';
-const THREE_ROOM_ERROR_MESSAGE = 'Количество гостей должно быть 1, 2 или 3';
-const HUNDRED_ROOM_ERROR_MESSAGE = '100 комнат - не длля гостей';
-const MAX_PRICE_ERROR_MESSAGE = 'Превышена максимальная цена - 1 000 000';
-const EMPTY_FIELD_ERROR_MESSAGE = 'Поле не должно быть пустым. Напишите цену, не меньше минимальной';
+import {
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+  ONE_ROOM_ERROR_MESSAGE,
+  TWO_ROOM_ERROR_MESSAGE,
+  THREE_ROOM_ERROR_MESSAGE,
+  HUNDRED_ROOM_ERROR_MESSAGE,
+  MAX_PRICE_ERROR_MESSAGE,
+  EMPTY_FIELD_ERROR_MESSAGE,
+  MAP_LATITUDE,
+  MAP_LONGITUDE
+} from './data.js';
 
 // ! Валидация формы Заголовок == пункт 3.1 техзадания
 const titleInputElement = document.querySelector('#title');
@@ -93,3 +97,30 @@ capacitySelectElement.addEventListener('change', (evt) => {
   }
   capacitySelectElement.reportValidity();
 });
+
+roomNumberSelectElement.addEventListener('change', (evt) => {
+  if (evt.target.value === '1' && ['3', '2', '0'].includes(capacitySelectElement.value)) {
+    capacitySelectElement.setCustomValidity(ONE_ROOM_ERROR_MESSAGE);
+  } else if (evt.target.value === '2' && ['3', '0'].includes(capacitySelectElement.value)) {
+    capacitySelectElement.setCustomValidity(TWO_ROOM_ERROR_MESSAGE);
+  } else if (evt.target.value === '3' && ['0'].includes(capacitySelectElement.value)) {
+    capacitySelectElement.setCustomValidity(THREE_ROOM_ERROR_MESSAGE);
+  } else if (evt.target.value === '100' && ['3', '2', '1'].includes(capacitySelectElement.value)) {
+    capacitySelectElement.setCustomValidity(HUNDRED_ROOM_ERROR_MESSAGE);
+  } else {
+    capacitySelectElement.setCustomValidity('');
+  }
+  capacitySelectElement.reportValidity();
+});
+
+// ! RESET
+
+function resetForm() {
+  document.querySelector('.ad-form').reset();
+  document.querySelector('.map__filters').reset();
+  document.querySelector('#address').value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
+}
+
+export {
+  resetForm
+};

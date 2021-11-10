@@ -1,4 +1,8 @@
 import {
+  MAP_LATITUDE,
+  MAP_LONGITUDE
+} from './data.js';
+import {
   setActiveState,
   setInactiveState
 } from './swift.js';
@@ -9,8 +13,7 @@ import {
 setInactiveState();
 
 // ! Создание интерактивного окна карты
-const MAP_LATITUDE = 35.69968;
-const MAP_LONGITUDE = 139.75708;
+
 const map = L.map('map-canvas');
 map.on('load', () => {
   setActiveState();
@@ -45,13 +48,15 @@ const marker = L.marker({
 marker.addTo(map);
 
 // ! Получение координат
-const addressInputElement = document.querySelector('#address');
-addressInputElement.value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
-marker.on('moveend', (evt) => {
-  const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)}, ${(evt.target.getLatLng().lng).toFixed(5)}`;
-  addressInputElement.value = coordinates;
-});
-
+function getDefaultCoordinates() {
+  const addressInputElement = document.querySelector('#address');
+  addressInputElement.value = `${MAP_LATITUDE}, ${MAP_LONGITUDE}`;
+  marker.on('moveend', (evt) => {
+    const coordinates = `${(evt.target.getLatLng().lat).toFixed(5)}, ${(evt.target.getLatLng().lng).toFixed(5)}`;
+    addressInputElement.value = coordinates;
+  });
+}
+getDefaultCoordinates();
 // ! Получение точек из массива
 
 function createCustomPopup(point) {
@@ -90,6 +95,20 @@ function createPointsOfMap(dataForMap) {
   });
 }
 
+
+function resetMap() {
+  map.closePopup();
+  map.setView({
+    lat: MAP_LATITUDE,
+    lng: MAP_LONGITUDE,
+  }, 10);
+  marker.setLatLng({
+    lat: MAP_LATITUDE,
+    lng: MAP_LONGITUDE,
+  });
+}
+
 export {
-  createPointsOfMap
+  createPointsOfMap,
+  resetMap
 };

@@ -1,36 +1,3 @@
-const AVATARS = [
-  'img/avatars/user01.png',
-  'img/avatars/user02.png',
-  'img/avatars/user03.png',
-  'img/avatars/user04.png',
-  'img/avatars/user05.png',
-  'img/avatars/user06.png',
-  'img/avatars/user07.png',
-  'img/avatars/user08.png',
-  'img/avatars/user09.png',
-  'img/avatars/user10.png',
-];
-const TITLES = [
-  'Хорошее жилье',
-  'Отличный вид',
-  'Метро рядом',
-  'Первый этаж',
-  'Тихий район',
-  'Возле рынка',
-  'Стадион напротив',
-  'У парка',
-  'Просторная кухня',
-  'Вежливые соседи',
-];
-const MIN_PRICE = 500000;
-const MAX_PRICE = 1000000;
-const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
-const MIN_ROOMS = 1;
-const MAX_ROOMS = 10;
-const MIN_GUESTS = 1;
-const MAX_GUESTS = 10;
-const CHECKINS = ['12:00', '13:00', '14:00'];
-const CHECKOUTS = ['12:00', '13:00', '14:00'];
 const PROPERTIES = [
   'wifi',
   'dishwasher',
@@ -39,45 +6,31 @@ const PROPERTIES = [
   'elevator',
   'conditioner',
 ];
-const DESCRIPTIONS = [
-  'Кухня полностью экипирована бытовой техникой: холодильник, посудомоечная машина, варочная панель.',
-  'Квартира оснащена всем необходимым для жизни, заходи и живи.',
-  'Квартира уютная и просторная, тихая, заезжай и живи, все в состоянии нового. Подъезд чистый и без запаха.',
-  'Хотите жить в шикарной дизайнерской студии и получать эстетическое удовольствие от нахождения в ней? ',
-  'Есть вся необходимая мебель и техника. Рассмотрим всех порядочных и платежеспособных.',
-  'Предпочтительный портрет арендаторов: возраст от 25 лет, дети не младше 8 лет, без домашних животных. ',
-  'Большая лоджия обрамляет всю квартиру.Из каждой комнаты выход на лоджию с завораживающей панорамой города.',
-  'На территории комплекса комфортный бассейн с ионизированной водой, сауна.',
-  'Беспроблемная парковка,автомойка -приятный бонус для автовладельцев.',
-  'Огороженная территория,высокопрофессиональная охрана,система видео наблюдения,консьерж.',
-];
-const PICTURES = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
-];
-const FROM_LATITUDE = 35.65000;
-const TO_LATITUDE = 35.70000;
-const FROM_LONGITUDE = 139.70000;
-const TO_LONGITUDE = 139.80000;
+const MAP_LATITUDE = 35.69968;
+const MAP_LONGITUDE = 139.75708;
+const MIN_NAME_LENGTH = 30;
+const MAX_NAME_LENGTH = 100;
+const ONE_ROOM_ERROR_MESSAGE = 'Количество гостей не может быть больше 1';
+const TWO_ROOM_ERROR_MESSAGE = 'Количество гостей не может быть больше 2';
+const THREE_ROOM_ERROR_MESSAGE = 'Количество гостей должно быть 1, 2 или 3';
+const HUNDRED_ROOM_ERROR_MESSAGE = '100 комнат - не длля гостей';
+const MAX_PRICE_ERROR_MESSAGE = 'Превышена максимальная цена - 1 000 000';
+const EMPTY_FIELD_ERROR_MESSAGE = 'Поле не должно быть пустым. Напишите цену, не меньше минимальной';
+const submitFormElement = document.querySelector('.ad-form');
+const ADVERTS_ON_MAP = 10;
 
 export {
-  AVATARS,
-  TITLES,
-  MIN_PRICE,
-  MAX_PRICE,
-  TYPES,
-  MIN_ROOMS,
-  MAX_ROOMS,
-  MIN_GUESTS,
-  MAX_GUESTS,
-  CHECKINS,
-  CHECKOUTS,
   PROPERTIES,
-  DESCRIPTIONS,
-  PICTURES,
-  FROM_LATITUDE,
-  TO_LATITUDE,
-  FROM_LONGITUDE,
-  TO_LONGITUDE
+  MAP_LATITUDE,
+  MAP_LONGITUDE,
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+  ONE_ROOM_ERROR_MESSAGE,
+  TWO_ROOM_ERROR_MESSAGE,
+  THREE_ROOM_ERROR_MESSAGE,
+  HUNDRED_ROOM_ERROR_MESSAGE,
+  MAX_PRICE_ERROR_MESSAGE,
+  EMPTY_FIELD_ERROR_MESSAGE,
+  submitFormElement,
+  ADVERTS_ON_MAP
 };
