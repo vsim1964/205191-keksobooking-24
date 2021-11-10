@@ -4,7 +4,8 @@ import {
   sendData
 } from './api.js';
 import {
-  getSuccessMessage
+  getSuccessMessage,
+  getErrorMessage
 } from './utilities.js';
 import {
   submitFormElement
@@ -13,9 +14,10 @@ import {
   createPointsOfMap
 } from './map.js';
 
-getData(createPointsOfMap);
+
+getData(createPointsOfMap, getErrorMessage);
 
 submitFormElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  sendData(getSuccessMessage);
+  sendData(getSuccessMessage, getErrorMessage, evt.target);
 });

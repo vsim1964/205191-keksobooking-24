@@ -1,22 +1,19 @@
-import {
-  createPointsOfMap
-} from './map.js';
-import {
-  ADVERTS_ON_MAP
-} from './data.js';
-
-const getData = () => {
+const getData = (onSuccess, onError) => {
   fetch('https://24.javascript.pages.academy/keksobooking/data')
-    .then((response) => response.json())
-    .then((adverts) => {
-      // createPointsOfMap(adverts);
-      createPointsOfMap(adverts.slice(0, ADVERTS_ON_MAP));
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Что-то пошло не так');
+      }
+    }).then((data) => {
+      onSuccess(data);
+    }).catch(() => {
+      onError();
     });
 };
 
-
 const sendData = (onSuccess, onError, data) => {
-
   const formData = new FormData(data);
 
   fetch('https://24.javascript.pages.academy/keksobooking', {
@@ -26,7 +23,7 @@ const sendData = (onSuccess, onError, data) => {
     if (response.ok) {
       onSuccess();
     } else {
-      onError();
+      throw new Error('Что-то пошло не так');
     }
   }).catch(() => {
     onError();

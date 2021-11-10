@@ -33,33 +33,47 @@ const errorTemplate = document.querySelector('#error');
 function getSuccessMessage() {
   const successModalElement = successTemplate.content.cloneNode(true);
   const successModalDivElement = successModalElement.querySelector('div');
-  successModalDivElement.addEventListener('click', () => {
-    document.querySelector('.success').remove();
-    // document.querySelector('.ad-form').reset();
+
+  let onModalKeyDown = null;
+  const closeModal = () => {
     resetMap();
     resetForm();
-  });
-  bodyElement.addEventListener('keydown', (evt) => {
+    document.querySelector('.success').remove();
+    bodyElement.removeEventListener('keydown', onModalKeyDown);
+  };
+  onModalKeyDown = (evt) => {
     if (evt.key === 'Escape') {
-      document.querySelector('.success').remove();
-      resetMap();
-      resetForm();
+      closeModal();
     }
+  };
+  successModalDivElement.addEventListener('click', () => {
+    closeModal();
   });
+  bodyElement.addEventListener('keydown', onModalKeyDown);
   bodyElement.appendChild(successModalElement);
 }
+
 
 function getErrorMessage() {
   const errorModalElement = errorTemplate.content.cloneNode(true);
   const errorModalDivElement = errorModalElement.querySelector('div');
-  errorModalDivElement.addEventListener('click', () => {
+
+  let onModalKeyDown = null;
+  const closeModal = () => {
+    resetMap();
+    resetForm();
     document.querySelector('.error').remove();
-  });
-  bodyElement.addEventListener('keydown', (evt) => {
+    bodyElement.removeEventListener('keydown', onModalKeyDown);
+  };
+  onModalKeyDown = (evt) => {
     if (evt.key === 'Escape') {
-      document.querySelector('.error').remove();
+      closeModal();
     }
+  };
+  errorModalDivElement.addEventListener('click', () => {
+    closeModal();
   });
+  bodyElement.addEventListener('keydown', onModalKeyDown);
   bodyElement.appendChild(errorModalElement);
 }
 

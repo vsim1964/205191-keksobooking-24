@@ -98,6 +98,21 @@ capacitySelectElement.addEventListener('change', (evt) => {
   capacitySelectElement.reportValidity();
 });
 
+roomNumberSelectElement.addEventListener('change', (evt) => {
+  if (evt.target.value === '1' && ['3', '2', '0'].includes(capacitySelectElement.value)) {
+    capacitySelectElement.setCustomValidity(ONE_ROOM_ERROR_MESSAGE);
+  } else if (evt.target.value === '2' && ['3', '0'].includes(capacitySelectElement.value)) {
+    capacitySelectElement.setCustomValidity(TWO_ROOM_ERROR_MESSAGE);
+  } else if (evt.target.value === '3' && ['0'].includes(capacitySelectElement.value)) {
+    capacitySelectElement.setCustomValidity(THREE_ROOM_ERROR_MESSAGE);
+  } else if (evt.target.value === '100' && ['3', '2', '1'].includes(capacitySelectElement.value)) {
+    capacitySelectElement.setCustomValidity(HUNDRED_ROOM_ERROR_MESSAGE);
+  } else {
+    capacitySelectElement.setCustomValidity('');
+  }
+  capacitySelectElement.reportValidity();
+});
+
 // ! RESET
 
 function resetForm() {
