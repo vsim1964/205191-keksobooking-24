@@ -68,6 +68,7 @@ function createCustomPopup(point) {
 }
 
 function createPointsOfMap(dataForMap) {
+
   dataForMap.forEach((point) => {
     const {
       location: {

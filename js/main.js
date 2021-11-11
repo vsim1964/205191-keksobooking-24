@@ -13,9 +13,12 @@ import {
 import {
   createPointsOfMap
 } from './map.js';
-
+import {
+  createMapOfFilteredAdverts
+} from './filters.js';
 
 getData(createPointsOfMap, getErrorMessage);
+getData(createMapOfFilteredAdverts, getErrorMessage);
 
 submitFormElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
