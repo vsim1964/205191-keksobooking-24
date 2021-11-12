@@ -1,4 +1,4 @@
-let adverts;
+let adverts = [];
 
 const getData = (onSuccess, onError) => {
   fetch('https://24.javascript.pages.academy/keksobooking/data')

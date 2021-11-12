@@ -10,7 +10,7 @@ const typeFilterElement = document.querySelector('#housing-type');
 const priceFilterElement = document.querySelector('#housing-price');
 const roomsFilterElement = document.querySelector('#housing-rooms');
 const guestsFilterElement = document.querySelector('#housing-guests');
-// const filteredAdverts = [];
+let filteredAdverts = [];
 
 function getFiters() {
   const a = typeFilterElement.value;
@@ -26,9 +26,8 @@ function getFiters() {
 
 function createMapOfFilteredAdverts() {
   resetMap();
-  const filteredAdverts = getFiters();
+  filteredAdverts = getFiters();
   createPointsOfMap(filteredAdverts);
-  // 10 элементов отрисовать
 }
 
 typeFilterElement.addEventListener('change', () => {
@@ -38,6 +37,7 @@ typeFilterElement.addEventListener('change', () => {
 priceFilterElement.addEventListener('change', () => {
   createMapOfFilteredAdverts();
 });
+
 roomsFilterElement.addEventListener('change', () => {
   createMapOfFilteredAdverts();
 });
@@ -50,7 +50,32 @@ export {
   createMapOfFilteredAdverts
 };
 
+
+// function getRank() {
+//   for (let i = 0; i < adverts.length; i++) {
+//     if (adverts[i].features.length === 0) {
+//       adverts[i].rank = 0;
+//     } else if (adverts[i].features.length === 1) {
+//       adverts[i].rank = 1;
+//     } else if (adverts[i].features.length === 2) {
+//       adverts[i].rank = 2;
+//     } else if (adverts[i].features.length === 3) {
+//       adverts[i].rank = 3;
+//     } else if (adverts[i].features.length === 4) {
+//       adverts[i].rank = 4;
+//     } else if (adverts[i].features.length === 5) {
+//       adverts[i].rank = 5;
+//     } else if (adverts[i].features.length === 6) {
+//       adverts[i].rank = 6;
+//     }
+//   }
+//   adverts.sort((obj, obj2) => {
+//     return obj2.rank - obj.rank
+//   });
+// }
+
 // // // --------------------
+
 // const mapFeatures = document.querySelector('.map__features');
 // const filterWifi = document.querySelector('#filter-wifi');
 // const filterDishwasher = document.querySelector('#filter-dishwasher');

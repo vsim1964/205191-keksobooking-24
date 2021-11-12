@@ -1,3 +1,4 @@
+import './sort2.js';
 import './forms.js';
 import {
   getData,
