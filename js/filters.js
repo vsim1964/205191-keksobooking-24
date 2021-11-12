@@ -18,7 +18,7 @@ function getFiters() {
   const c = roomsFilterElement.value;
   const d = guestsFilterElement.value;
   return adverts.filter((item) => {
-    if ((a === item.offer.type) && (b === item.offer.type) && (c === item.offer.type) && (d === item.offer.type)) {
+    if ((a === item.offer.type) && (b === item.offer.price) && (c === item.offer.rooms) && (d === item.offer.guests)) {
       return item;
     }
   });
@@ -50,15 +50,39 @@ export {
   createMapOfFilteredAdverts
 };
 
-// // --------------------
-
+// // // --------------------
 // const mapFeatures = document.querySelector('.map__features');
+// const filterWifi = document.querySelector('#filter-wifi');
 // const filterDishwasher = document.querySelector('#filter-dishwasher');
-// const filterParking = document.querySelector('#filter-parking');
+// const filterParking = document.querySelector('#filter-washer');
 // const filterWasher = document.querySelector('#filter-washer');
 // const filterElevator = document.querySelector('#filter-elevator');
 // const filterConditioner = document.querySelector('#filter-conditioner');
-// const filterWifi = document.querySelector('#filter-wifi');
+
+// function getRankAdverts(ADV) {
+//   mapFeatures.addEventListener('change', () => {
+//     let rank = 0;
+//     if (filterWifi.hasAttribute('checked')) {
+//       rank += 1;
+//     }
+//     if (filterDishwasher.hasAttribute('checked')) {
+//       rank += 1;
+//     }
+//     if (filterhwasheri.hasAttribute('checked')) {
+//       rank += 1;
+//     }
+//     if (filterParking.hasAttribute('checked')) {
+//       rank += 1;
+//     }
+//     if (filterElevator.hasAttribute('checked')) {
+//       rank += 1;
+//     }
+//     if (filterConditioner.hasAttribute('checked')) {
+//       rank += 1;
+//     }
+//     return adv
+//   });
+// }
 
 // mapFeatures.addEventListener('change', () => {
 //   if (filterWifi.hasAttribute('checked')) {
@@ -75,7 +99,3 @@ export {
 //     console.log(adverts.filter(item => (item.features[5])));
 //   }
 // });
-
-// let rank = 0;
-
-// if ()
