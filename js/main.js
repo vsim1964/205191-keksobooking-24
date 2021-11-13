@@ -1,4 +1,3 @@
-import './sort2.js';
 import './forms.js';
 import {
   getData,
@@ -11,14 +10,14 @@ import {
 import {
   submitFormElement
 } from './data.js';
-import {
-  createPointsOfMap
-} from './map.js';
+// import {
+//   createPointsOfMap
+// } from './map.js';
 import {
   createMapOfFilteredAdverts
 } from './filters.js';
 
-getData(createPointsOfMap, getErrorMessage);
+// getData(createPointsOfMap, getErrorMessage);
 getData(createMapOfFilteredAdverts, getErrorMessage);
 
 submitFormElement.addEventListener('submit', (evt) => {
