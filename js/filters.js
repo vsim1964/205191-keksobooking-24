@@ -108,6 +108,26 @@ guestsFilterElement.addEventListener('change', () => {
   createMapOfFilteredAdverts();
 });
 
+filterDishwasher.addEventListener('change', () => {
+  createMapOfFilteredAdverts();
+});
+
+filterParking.addEventListener('change', () => {
+  createMapOfFilteredAdverts();
+});
+
+filterWasher.addEventListener('change', () => {
+  createMapOfFilteredAdverts();
+});
+
+filterElevator.addEventListener('change', () => {
+  createMapOfFilteredAdverts();
+});
+
+filterConditioner.addEventListener('change', () => {
+  createMapOfFilteredAdverts();
+});
+
 export {
   createMapOfFilteredAdverts
 };
