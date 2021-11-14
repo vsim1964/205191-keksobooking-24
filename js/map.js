@@ -67,6 +67,10 @@ function createCustomPopup(point) {
   return popupElement;
 }
 
+// ! Создание слоя для меток объявлений
+
+const markerGroup = L.layerGroup().addTo(map);
+
 function createPointsOfMap(dataForMap) {
 
   dataForMap.forEach((point) => {
@@ -91,7 +95,7 @@ function createPointsOfMap(dataForMap) {
     });
 
     scorer
-      .addTo(map)
+      .addTo(markerGroup)
       .bindPopup(createCustomPopup(point));
   });
 }
@@ -111,5 +115,6 @@ function resetMap() {
 
 export {
   createPointsOfMap,
-  resetMap
+  resetMap,
+  markerGroup
 };

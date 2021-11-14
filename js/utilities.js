@@ -29,6 +29,7 @@ function getRandomFloat(min, max, fraction) {
 const bodyElement = document.querySelector('body');
 const successTemplate = document.querySelector('#success');
 const errorTemplate = document.querySelector('#error');
+const getErrorTemplate = document.querySelector('#get-error');
 
 function getSuccessMessage() {
   const successModalElement = successTemplate.content.cloneNode(true);
@@ -77,9 +78,34 @@ function getErrorMessage() {
   bodyElement.appendChild(errorModalElement);
 }
 
+function getErrorLoad() {
+  const getErrorModalElement = getErrorTemplate.content.cloneNode(true);
+  const getErrorModalDivElement = getErrorModalElement.querySelector('div');
+
+  let onModalKeyDown = null;
+  const closeModal = () => {
+    resetMap();
+    resetForm();
+    document.querySelector('.get-error').remove();
+    bodyElement.removeEventListener('keydown', onModalKeyDown);
+  };
+  onModalKeyDown = (evt) => {
+    if (evt.key === 'Escape') {
+      closeModal();
+    }
+  };
+  getErrorModalDivElement.addEventListener('click', () => {
+    closeModal();
+  });
+  bodyElement.addEventListener('keydown', onModalKeyDown);
+  bodyElement.appendChild(getErrorModalDivElement);
+}
+
+
 export {
   getRandomInteger,
   getRandomFloat,
   getSuccessMessage,
-  getErrorMessage
+  getErrorMessage,
+  getErrorLoad
 };
