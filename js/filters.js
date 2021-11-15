@@ -25,10 +25,11 @@ const filterElevator = document.querySelector('#filter-elevator');
 const filterConditioner = document.querySelector('#filter-conditioner');
 
 let filteredAdverts = [];
-const checkedFeaturesFilters = [];
+
 
 // ! Объявления с массивом фич
 function filterFeatures(advert) {
+  const checkedFeaturesFilters = [];
   if (filterWifi.checked) {
     checkedFeaturesFilters.push('wifi');
   }
@@ -47,11 +48,11 @@ function filterFeatures(advert) {
   if (filterConditioner.checked) {
     checkedFeaturesFilters.push('conditioner');
   }
-  if (!advert.offer.features) {
+  if (checkedFeaturesFilters.length && !advert.offer.features) {
     return false;
   }
   for (let i = 0; i < checkedFeaturesFilters.length; i++) {
-    if (!advert.offer.features.includes(checkedFeaturesFilters)) {
+    if (!advert.offer.features.includes(checkedFeaturesFilters[i])) {
       return false;
     }
   }

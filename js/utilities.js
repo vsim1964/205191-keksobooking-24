@@ -86,7 +86,7 @@ function getErrorLoad() {
   const closeModal = () => {
     resetMap();
     resetForm();
-    document.querySelector('.get-error').remove();
+    document.querySelector('.error').remove();
     bodyElement.removeEventListener('keydown', onModalKeyDown);
   };
   onModalKeyDown = (evt) => {
