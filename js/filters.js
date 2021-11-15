@@ -47,8 +47,11 @@ function filterFeatures(advert) {
   if (filterConditioner.checked) {
     checkedFeaturesFilters.push('conditioner');
   }
+  if (!advert.offer.features) {
+    return false;
+  }
   for (let i = 0; i < checkedFeaturesFilters.length; i++) {
-    if (!advert.features.includes(checkedFeaturesFilters)) {
+    if (!advert.offer.features.includes(checkedFeaturesFilters)) {
       return false;
     }
   }
@@ -78,20 +81,17 @@ function isAdvertPriceFilter(advert) {
 }
 
 // ! Основная функция фильтрации
-
 function getFiters() {
   const typeValue = typeFilterElement.value;
   const roomsValue = roomsFilterElement.value;
   const guestsValue = guestsFilterElement.value;
-  return adverts.filter((item) => {
-    return (
-      (item.offer.type === typeValue || typeValue === 'any') &&
-      isAdvertPriceFilter(item) &&
-      (item.offer.rooms === +roomsValue || roomsValue === 'any') &&
-      (item.offer.guests === +guestsValue || guestsValue === 'any') &&
-      filterFeatures(item)
-    );
-  });
+  return adverts.filter(
+    (item) => (item.offer.type === typeValue || typeValue === 'any') &&
+    isAdvertPriceFilter(item) &&
+    (item.offer.rooms === +roomsValue || roomsValue === 'any') &&
+    (item.offer.guests === +guestsValue || guestsValue === 'any') &&
+    filterFeatures(item),
+  );
 }
 
 // ! Функция отрисовки
@@ -102,7 +102,6 @@ function createMapOfFilteredAdverts() {
 }
 
 // ! Прослушка, отрисовка и устранение дребезга
-
 filtersForm.addEventListener('change', () => {
   _.debounce(() => createMapOfFilteredAdverts(), RERENDER_DELAY)();
 });
