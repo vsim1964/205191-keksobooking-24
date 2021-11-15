@@ -1,4 +1,5 @@
 /* global _:readonly */
+
 import {
   createPointsOfMap,
   markerGroup
@@ -23,6 +24,7 @@ const filterConditioner = document.querySelector('#filter-conditioner');
 let filteredAdverts = [];
 const checkedFeaturesFilters = [];
 
+// ! Объявления с массивом фич
 function filterFeatures() {
   adverts.filter((advert) => {
 
@@ -54,6 +56,7 @@ function filterFeatures() {
   });
 }
 
+// ! Фильтрация по цене
 function isAdvertPriceFilter(advert) {
   const priceValue = priceFilterElement.value;
   if (priceValue === 'low' && advert.offer.price < 10000) {
@@ -62,7 +65,7 @@ function isAdvertPriceFilter(advert) {
   if (
     priceValue === 'middle' &&
     advert.offer.price >= 10000 &&
-    advert.offer.price >= 10000
+    advert.offer.price <= 50000
   ) {
     return true;
   }
@@ -74,6 +77,8 @@ function isAdvertPriceFilter(advert) {
   }
   return false;
 }
+
+// ! Основная функция фильтрации
 
 function getFiters() {
   const typeValue = typeFilterElement.value;
@@ -90,11 +95,14 @@ function getFiters() {
   });
 }
 
+// ! Функция отрисовки
 function createMapOfFilteredAdverts() {
   markerGroup.clearLayers();
   filteredAdverts = getFiters();
   createPointsOfMap(filteredAdverts);
 }
+
+// ! Прослушка, отрисовка и устранение дребезга
 
 typeFilterElement.addEventListener('change', () => {
   (_.debounce(() =>
