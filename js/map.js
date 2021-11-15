@@ -63,7 +63,6 @@ function createCustomPopup(point) {
   const balloonTemplate = document.querySelector('#card').content.querySelector('.popup');
   const popupElement = balloonTemplate.cloneNode(true);
   createCard(point, popupElement);
-
   return popupElement;
 }
 
@@ -99,7 +98,6 @@ function createPointsOfMap(dataForMap) {
       .bindPopup(createCustomPopup(point));
   });
 }
-
 
 function resetMap() {
   map.closePopup();

@@ -2,8 +2,15 @@ import {
   resetForm
 } from './forms.js';
 import {
-  resetMap
+  resetMap,
+  markerGroup
 } from './map.js';
+import {
+  createMapOfFilteredAdverts
+} from './filters.js';
+import {
+  adverts
+} from './api.js';
 
 const bodyElement = document.querySelector('body');
 const successTemplate = document.querySelector('#success');
@@ -16,8 +23,10 @@ function getSuccessMessage() {
 
   let onModalKeyDown = null;
   const closeModal = () => {
+    markerGroup.clearLayers();
     resetMap();
     resetForm();
+    createMapOfFilteredAdverts(adverts);
     document.querySelector('.success').remove();
     bodyElement.removeEventListener('keydown', onModalKeyDown);
   };
@@ -40,8 +49,9 @@ function getErrorMessage() {
 
   let onModalKeyDown = null;
   const closeModal = () => {
+    markerGroup.clearLayers();
     resetMap();
-    resetForm();
+    createMapOfFilteredAdverts(adverts);
     document.querySelector('.error').remove();
     bodyElement.removeEventListener('keydown', onModalKeyDown);
   };
@@ -63,8 +73,10 @@ function getErrorLoad() {
 
   let onModalKeyDown = null;
   const closeModal = () => {
+    markerGroup.clearLayers();
     resetMap();
     resetForm();
+    createMapOfFilteredAdverts(adverts);
     document.querySelector('.get-error').remove();
     bodyElement.removeEventListener('keydown', onModalKeyDown);
   };
