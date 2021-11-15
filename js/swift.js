@@ -32,25 +32,7 @@ function setInactiveState() {
   });
 }
 
-const bodyElement = document.querySelector('body');
-
-const successTemplate = document.querySelector('#success');
-const successModalElement = successTemplate.content.cloneNode(true);
-
-function getSuccessMessage() {
-  bodyElement.appendChild(successModalElement);
-}
-
-const errorTemplate = document.querySelector('#error');
-const errorModalElement = errorTemplate.content.cloneNode(true);
-
-function getErrorMessage() {
-  bodyElement.appendChild(errorModalElement);
-}
-
 export {
   setActiveState,
-  setInactiveState,
-  getSuccessMessage,
-  getErrorMessage
+  setInactiveState
 };
