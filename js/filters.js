@@ -7,6 +7,9 @@ import {
 import {
   adverts
 } from './api.js';
+import {
+  ADVERTS_ON_MAP
+} from './data.js';
 
 const RERENDER_DELAY = 500;
 const typeFilterElement = document.querySelector('#housing-type');
@@ -25,35 +28,31 @@ let filteredAdverts = [];
 const checkedFeaturesFilters = [];
 
 // ! Объявления с массивом фич
-function filterFeatures() {
-  adverts.filter((advert) => {
-
-    if (filterWifi.checked) {
-      checkedFeaturesFilters.push('wifi');
+function filterFeatures(advert) {
+  if (filterWifi.checked) {
+    checkedFeaturesFilters.push('wifi');
+  }
+  if (filterDishwasher.checked) {
+    checkedFeaturesFilters.push('dishwasher');
+  }
+  if (filterParking.checked) {
+    checkedFeaturesFilters.push('parking');
+  }
+  if (filterWasher.checked) {
+    checkedFeaturesFilters.push('washer');
+  }
+  if (filterElevator.checked) {
+    checkedFeaturesFilters.push('elevator');
+  }
+  if (filterConditioner.checked) {
+    checkedFeaturesFilters.push('conditioner');
+  }
+  for (let i = 0; i < checkedFeaturesFilters.length; i++) {
+    if (!advert.features.includes(checkedFeaturesFilters)) {
+      return false;
     }
-    if (filterDishwasher.checked) {
-      checkedFeaturesFilters.push('dishwasher');
-    }
-    if (filterParking.checked) {
-      checkedFeaturesFilters.push('parking');
-    }
-    if (filterWasher.checked) {
-      checkedFeaturesFilters.push('washer');
-    }
-    if (filterElevator.checked) {
-      checkedFeaturesFilters.push('elevator');
-    }
-    if (filterConditioner.checked) {
-      checkedFeaturesFilters.push('conditioner');
-    }
-
-    for (let i = 0; i < checkedFeaturesFilters.length; i++) {
-      if (!advert.features.includes(checkedFeaturesFilters)) {
-        return false;
-      }
-    }
-    return true;
-  });
+  }
+  return true;
 }
 
 // ! Фильтрация по цене
@@ -99,41 +98,13 @@ function getFiters() {
 function createMapOfFilteredAdverts() {
   markerGroup.clearLayers();
   filteredAdverts = getFiters();
-  createPointsOfMap(filteredAdverts);
+  createPointsOfMap(filteredAdverts.slice(0, ADVERTS_ON_MAP));
 }
 
 // ! Прослушка, отрисовка и устранение дребезга
 
-typeFilterElement.addEventListener('change', () => {
-  (_.debounce(() =>
-    createMapOfFilteredAdverts(),
-    RERENDER_DELAY,
-  ));
-});
-
-priceFilterElement.addEventListener('change', () => {
-  (_.debounce(() =>
-    createMapOfFilteredAdverts(),
-    RERENDER_DELAY,
-  ));
-});
-
-roomsFilterElement.addEventListener('change', () => {
-  createMapOfFilteredAdverts();
-});
-
-guestsFilterElement.addEventListener('change', () => {
-  (_.debounce(() =>
-    createMapOfFilteredAdverts(),
-    RERENDER_DELAY,
-  ));
-});
-
 filtersForm.addEventListener('change', () => {
-  (_.debounce(() =>
-    createMapOfFilteredAdverts(),
-    RERENDER_DELAY,
-  ));
+  _.debounce(() => createMapOfFilteredAdverts(), RERENDER_DELAY)();
 });
 
 export {
