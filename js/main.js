@@ -5,17 +5,17 @@ import {
 } from './api.js';
 import {
   getSuccessMessage,
-  getErrorMessage
-} from './utilities.js';
+  getErrorMessage,
+  getErrorLoad
+} from './modal.js';
 import {
   submitFormElement
 } from './data.js';
 import {
-  createPointsOfMap
-} from './map.js';
+  createMapOfFilteredAdverts
+} from './filters.js';
 
-
-getData(createPointsOfMap, getErrorMessage);
+getData(createMapOfFilteredAdverts, getErrorLoad);
 
 submitFormElement.addEventListener('submit', (evt) => {
   evt.preventDefault();

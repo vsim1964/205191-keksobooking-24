@@ -63,11 +63,15 @@ function createCustomPopup(point) {
   const balloonTemplate = document.querySelector('#card').content.querySelector('.popup');
   const popupElement = balloonTemplate.cloneNode(true);
   createCard(point, popupElement);
-
   return popupElement;
 }
 
+// ! Создание слоя для меток объявлений
+
+const markerGroup = L.layerGroup().addTo(map);
+
 function createPointsOfMap(dataForMap) {
+
   dataForMap.forEach((point) => {
     const {
       location: {
@@ -90,11 +94,10 @@ function createPointsOfMap(dataForMap) {
     });
 
     scorer
-      .addTo(map)
+      .addTo(markerGroup)
       .bindPopup(createCustomPopup(point));
   });
 }
-
 
 function resetMap() {
   map.closePopup();
@@ -110,5 +113,6 @@ function resetMap() {
 
 export {
   createPointsOfMap,
-  resetMap
+  resetMap,
+  markerGroup
 };

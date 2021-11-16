@@ -1,3 +1,5 @@
+let adverts = [];
+
 const getData = (onSuccess, onError) => {
   fetch('https://24.javascript.pages.academy/keksobooking/data')
     .then((response) => {
@@ -7,11 +9,13 @@ const getData = (onSuccess, onError) => {
         throw new Error('Что-то пошло не так');
       }
     }).then((data) => {
+      adverts = (data);
       onSuccess(data);
     }).catch(() => {
       onError();
     });
 };
+
 
 const sendData = (onSuccess, onError, data) => {
   const formData = new FormData(data);
@@ -30,8 +34,8 @@ const sendData = (onSuccess, onError, data) => {
   });
 };
 
-
 export {
   getData,
-  sendData
+  sendData,
+  adverts
 };
