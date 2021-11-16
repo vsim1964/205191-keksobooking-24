@@ -1,21 +1,19 @@
 let adverts = [];
 
 const getData = (onSuccess, onError) => {
-  fetch('https://24.javascript.pages.academy/keksobooking/data')
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Что-то пошло не так');
-      }
-    }).then((data) => {
-      adverts = (data);
-      onSuccess(data);
-    }).catch(() => {
-      onError();
-    });
+  return fetch('https://24.javascript.pages.academy/keksobooking/data').then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Что-то пошло не так');
+    }
+  }).then((data) => {
+    adverts = (data);
+    onSuccess(data);
+  }).catch(() => {
+    onError();
+  });
 };
-
 
 const sendData = (onSuccess, onError, data) => {
   const formData = new FormData(data);

@@ -9,14 +9,23 @@ import {
 import {
   createCard
 } from './card.js';
-
+import {
+  getData
+} from './api.js';
 setInactiveState();
+import {
+  createMapOfFilteredAdverts
+} from './filters.js';
+import {
+  getErrorLoad
+} from './modal.js';
+
 
 // ! Создание интерактивного окна карты
 
 const map = L.map('map-canvas');
 map.on('load', () => {
-  setActiveState();
+  getData(createMapOfFilteredAdverts, getErrorLoad).then(() => setActiveState());
 });
 
 map.setView({
