@@ -9,6 +9,15 @@ import {
 import {
   createCard
 } from './card.js';
+import {
+  getData
+} from './api.js';
+import {
+  getErrorLoad
+} from './modal.js';
+import {
+  createMapOfFilteredAdverts
+} from './filters.js';
 
 setInactiveState();
 
@@ -16,7 +25,9 @@ setInactiveState();
 
 const map = L.map('map-canvas');
 map.on('load', () => {
-  setActiveState();
+  getData(createMapOfFilteredAdverts, getErrorLoad).then(() => {
+    setActiveState();
+  });
 });
 
 map.setView({

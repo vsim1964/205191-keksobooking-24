@@ -1,7 +1,7 @@
 let adverts = [];
 
 const getData = (onSuccess, onError) => {
-  fetch('https://24.javascript.pages.academy/keksobooking/data')
+  return fetch('https://24.javascript.pages.academy/keksobooking/data')
     .then((response) => {
       if (response.ok) {
         return response.json();
