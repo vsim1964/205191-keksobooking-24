@@ -42,7 +42,6 @@ function getSuccessMessage() {
   bodyElement.appendChild(successModalElement);
 }
 
-
 function getErrorMessage() {
   const errorModalElement = errorTemplate.content.cloneNode(true);
   const errorModalDivElement = errorModalElement.querySelector('div');
@@ -50,7 +49,6 @@ function getErrorMessage() {
   let onModalKeyDown = null;
   const closeModal = () => {
     markerGroup.clearLayers();
-    resetMap();
     createMapOfFilteredAdverts(adverts);
     document.querySelector('.error').remove();
     bodyElement.removeEventListener('keydown', onModalKeyDown);
@@ -74,8 +72,6 @@ function getErrorLoad() {
   let onModalKeyDown = null;
   const closeModal = () => {
     markerGroup.clearLayers();
-    resetMap();
-    resetForm();
     createMapOfFilteredAdverts(adverts);
     document.querySelector('.get-error').remove();
     bodyElement.removeEventListener('keydown', onModalKeyDown);

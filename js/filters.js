@@ -28,7 +28,7 @@ let filteredAdverts = [];
 
 
 // ! Объявления с массивом фич
-function filterFeatures(advert) {
+function isAdvertFitFeaturesFilter(advert) {
   const checkedFeaturesFilters = [];
   if (filterWifi.checked) {
     checkedFeaturesFilters.push('wifi');
@@ -60,7 +60,7 @@ function filterFeatures(advert) {
 }
 
 // ! Фильтрация по цене
-function isAdvertPriceFilter(advert) {
+function isAdvertFitPriceFilter(advert) {
   const priceValue = priceFilterElement.value;
   if (priceValue === 'low' && advert.offer.price < 10000) {
     return true;
@@ -88,10 +88,10 @@ function getFiters() {
   const guestsValue = guestsFilterElement.value;
   return adverts.filter(
     (item) => (item.offer.type === typeValue || typeValue === 'any') &&
-    isAdvertPriceFilter(item) &&
+    isAdvertFitPriceFilter(item) &&
     (item.offer.rooms === +roomsValue || roomsValue === 'any') &&
     (item.offer.guests === +guestsValue || guestsValue === 'any') &&
-    filterFeatures(item),
+    isAdvertFitFeaturesFilter(item),
   );
 }
 
