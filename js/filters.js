@@ -1,5 +1,3 @@
-/* global _:readonly */
-
 import {
   createPointsOfMap,
   markerGroup
