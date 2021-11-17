@@ -24,7 +24,6 @@ const filterConditioner = document.querySelector('#filter-conditioner');
 
 let filteredAdverts = [];
 
-
 // ! Объявления с массивом фич
 function isAdvertFitFeaturesFilter(advert) {
   const checkedFeaturesFilters = [];
@@ -89,8 +88,7 @@ function getFiters() {
     isAdvertFitPriceFilter(item) &&
     (item.offer.rooms === +roomsValue || roomsValue === 'any') &&
     (item.offer.guests === +guestsValue || guestsValue === 'any') &&
-    isAdvertFitFeaturesFilter(item),
-  );
+    isAdvertFitFeaturesFilter(item));
 }
 
 // ! Функция отрисовки
